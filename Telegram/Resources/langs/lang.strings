@@ -23,6 +23,9 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_menu_my_groups" = "My Groups";
 "lng_menu_my_channels" = "My Channels";
 
+"lng_shortcut_account_next" = "Switch to next account";
+"lng_shortcut_account_prev" = "Switch to previous account";
+
 "lng_disable_notifications_from_tray" = "Disable notifications";
 "lng_enable_notifications_from_tray" = "Enable notifications";
 "lng_open_from_tray" = "Open Telegram";

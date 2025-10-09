@@ -1,3 +1,4 @@
+
 /*
 This file is part of Telegram Desktop,
 the official desktop application for the Telegram messaging service.
@@ -109,6 +110,9 @@ const auto CommandByName = base::flat_map<QString, Command>{
 	{ u"account4"_q          , Command::ShowAccount4 },
 	{ u"account5"_q          , Command::ShowAccount5 },
 	{ u"account6"_q          , Command::ShowAccount6 },
+
+    { u"account_next"_q      , Command::AccountNext },
+    { u"account_prev"_q      , Command::AccountPrev },
 
 	{ u"folder1"_q           , Command::ShowFolder1 },
 	{ u"folder2"_q           , Command::ShowFolder2 },
@@ -488,6 +492,9 @@ void Manager::fillDefaults() {
 	set(u"alt+down"_q, Command::ChatNext);
 	set(u"ctrl+pgup"_q, Command::ChatPrevious);
 	set(u"alt+up"_q, Command::ChatPrevious);
+
+    set(u"ctrl++"_q, Command::AccountNext);
+    set(u"ctrl+-"_q, Command::AccountPrev);
 
 	set(u"ctrl+alt+home"_q, Command::ChatFirst);
 	set(u"ctrl+alt+end"_q, Command::ChatLast);
