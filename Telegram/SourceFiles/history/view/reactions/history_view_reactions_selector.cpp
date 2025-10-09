@@ -1048,6 +1048,8 @@ void Selector::createList() {
 			.customRecentFactory = _unifiedFactoryOwner->factory(),
 			.freeEffects = std::move(freeEffects),
 			.st = st,
+			.mediaPreviewParent = this,
+			.mediaPreviewMargins = marginsForShadow(),
 		}));
 	if (!_reactions.stickers.empty()) {
 		auto descriptors = ranges::views::all(
