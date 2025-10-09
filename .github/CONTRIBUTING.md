@@ -110,5 +110,5 @@ Before you submit a pull request, please test your changes. Verify that Telegram
 [pr]: https://github.com/AyuGram/AyuGramDesktop/compare
 [build_instructions]: https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs
 [closing-issues-via-commit-messages]: https://help.github.com/articles/closing-issues-via-commit-messages/
-[translate]: https://crowdin.com/project/ayugram
+[translate]: https://crowdin.com/project/dildogram
 [android_repo]: https://github.com/AyuGram/AyuGram4A

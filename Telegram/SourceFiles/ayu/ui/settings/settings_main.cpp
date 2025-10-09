@@ -124,23 +124,23 @@ void SetupLinks(
 	const auto links = std::vector<LinkInfo>{
 		{
 			tr::ayu_LinksChannel(tr::now),
-			QString("@ayugram"),
+			QString("@dildogram"),
 			&st::menuIconChannel,
 			[=]
 			{
 				controller->showPeerByLink(Window::PeerByLinkInfo{
-					.usernameOrId = QString("ayugram"),
+					.usernameOrId = QString("dildogram"),
 				});
 			}
 		},
 		{
 			tr::ayu_LinksChats(tr::now),
-			QString("@ayugramchat"),
+			QString("@dildogramchat"),
 			&st::menuIconChats,
 			[=]
 			{
 				controller->showPeerByLink(Window::PeerByLinkInfo{
-					.usernameOrId = QString("ayugramchat"),
+					.usernameOrId = QString("dildogramchat"),
 				});
 			}
 		},
@@ -150,16 +150,16 @@ void SetupLinks(
 			&st::menuIconTranslate,
 			[=]
 			{
-				QDesktopServices::openUrl(QString("https://translate.ayugram.one"));
+				QDesktopServices::openUrl(QString("https://translate.dildogram.one"));
 			}
 		},
 		{
 			tr::ayu_LinksDocumentation(tr::now),
-			QString("docs.ayugram.one"),
+			QString("docs.dildogram.one"),
 			&st::menuIconIpAddress,
 			[=]
 			{
-				QDesktopServices::openUrl(QString("https://docs.ayugram.one"));
+				QDesktopServices::openUrl(QString("https://docs.dildogram.one"));
 			}
 		},
 	};

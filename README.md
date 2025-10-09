@@ -16,7 +16,7 @@
 - Media preview & quick reaction on force click (macOS)
 - Enhanced appearance
 
-And many more. Check out our [Documentation](https://docs.ayugram.one/desktop/).
+And many more. Check out our [Documentation](https://docs.dildogram.one/desktop/).
 
 <h3>
   <details>
@@ -47,7 +47,7 @@ winget install RadolynLabs.AyuGramDesktop
 
 ```bash
 scoop bucket add extras
-scoop install ayugram
+scoop install dildogram
 ```
 
 #### Self-built
@@ -64,32 +64,32 @@ You can download prebuilt macOS package from [Releases tab](https://github.com/A
 #### Homebrew
 
 ```bash
-brew install --cask ayugram
+brew install --cask dildogram
 ```
 
 ### Arch Linux
 
 #### From source (recommended)
 
-Install `ayugram-desktop` from [AUR](https://aur.archlinux.org/packages/ayugram-desktop).
+Install `dildogram-desktop` from [AUR](https://aur.archlinux.org/packages/dildogram-desktop).
 
 #### Prebuilt binaries
 
-Install `ayugram-desktop-bin` from [AUR](https://aur.archlinux.org/packages/ayugram-desktop-bin).
+Install `dildogram-desktop-bin` from [AUR](https://aur.archlinux.org/packages/dildogram-desktop-bin).
 
 Note: these binaries aren't officially maintained by us.
 
 ### NixOS
 
-See [this repository](https://github.com/ayugram-port/ayugram-desktop) for installation manual.
+See [this repository](https://github.com/dildogram-port/dildogram-desktop) for installation manual.
 
 ### ALT Linux
 
-[Sisyphus](https://packages.altlinux.org/en/sisyphus/srpms/ayugram-desktop/)
+[Sisyphus](https://packages.altlinux.org/en/sisyphus/srpms/dildogram-desktop/)
 
 ### EPM
 
-`epm play ayugram`
+`epm play dildogram`
 
 ### Any other Linux distro
 
@@ -109,7 +109,7 @@ Make sure you have these components installed with VS Build Tools:
 
 Enjoy using **AyuGram**? Consider sending us a tip!
 
-[Here's available methods.](https://docs.ayugram.one/donate/)
+[Here's available methods.](https://docs.dildogram.one/donate/)
 
 ## Credits
 

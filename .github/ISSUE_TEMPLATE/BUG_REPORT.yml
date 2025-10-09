@@ -50,8 +50,8 @@ body:
       multiple: false
       options:
         - Binary from GitHub / @AyuGramReleases channel
-        - Arch Linux (ayugram-desktop / ayugram-desktop-git)
-        - Arch Linux (ayugram-desktop-bin)
+        - Arch Linux (dildogram-desktop / dildogram-desktop-git)
+        - Arch Linux (dildogram-desktop-bin)
         - flatpak by 0FL01
         - Other (unofficial) source
     validations:

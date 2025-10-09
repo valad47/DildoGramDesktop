@@ -15,7 +15,7 @@
 - Превью медиа и быстрая реакция при сильном нажатии на тачпад (macOS)
 - Улучшенный вид
 
-И многое другое. Посмотрите нашу [Документацию](https://docs.ayugram.one/desktop/) для более подробной информации.
+И многое другое. Посмотрите нашу [Документацию](https://docs.dildogram.one/desktop/) для более подробной информации.
 
 <h3>
   <details>
@@ -46,7 +46,7 @@ winget install RadolynLabs.AyuGramDesktop
 
 ```bash
 scoop bucket add extras
-scoop install ayugram
+scoop install dildogram
 ```
 
 #### Сборка вручную
@@ -63,32 +63,32 @@ scoop install ayugram
 #### Homebrew
 
 ```bash
-brew install --cask ayugram
+brew install --cask dildogram
 ```
 
 ### Arch Linux
 
 #### Из исходников (рекомендованный способ)
 
-Установите `ayugram-desktop` из [AUR](https://aur.archlinux.org/packages/ayugram-desktop).
+Установите `dildogram-desktop` из [AUR](https://aur.archlinux.org/packages/dildogram-desktop).
 
 #### Готовые бинарники
 
-Установите `ayugram-desktop-bin` из [AUR](https://aur.archlinux.org/packages/ayugram-desktop-bin).
+Установите `dildogram-desktop-bin` из [AUR](https://aur.archlinux.org/packages/dildogram-desktop-bin).
 
 Примечание: данный пакет собирается не нами.
 
 ### NixOS
 
-Попробуйте [этот репозиторий](https://github.com/ayugram-port/ayugram-desktop).
+Попробуйте [этот репозиторий](https://github.com/dildogram-port/dildogram-desktop).
 
 ### ALT Linux
 
-[Sisyphus](https://packages.altlinux.org/en/sisyphus/srpms/ayugram-desktop/)
+[Sisyphus](https://packages.altlinux.org/en/sisyphus/srpms/dildogram-desktop/)
 
 ### EPM
 
-`epm play ayugram`
+`epm play dildogram`
 
 ### Любой другой Линукс дистрибутив
 
@@ -108,7 +108,7 @@ Flatpak: https://github.com/0FL01/AyuGramDesktop-flatpak
 
 Вам нравится использовать **AyuGram**? Оставьте нам чаевые!
 
-[Здесь доступные варианты.](https://docs.ayugram.one/donate/)
+[Здесь доступные варианты.](https://docs.dildogram.one/donate/)
 
 ## Использованные материалы
 

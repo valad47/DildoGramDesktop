@@ -92,7 +92,7 @@ void AboutBox(not_null<Ui::GenericBox*> box, Window::SessionController* controll
 		{
 			box->closeBox();
 			controller->showPeerByLink(Window::PeerByLinkInfo{
-				.usernameOrId = QString("ayugramreleases"),
+				.usernameOrId = QString("dildogramreleases"),
 			});
 		});
 

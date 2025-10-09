@@ -51,7 +51,7 @@ void RCManager::makeRequest() {
 
 	clearSentRequest();
 
-	const auto request = QNetworkRequest(QUrl("https://update.ayugram.one/rc/current/desktop2"));
+	const auto request = QNetworkRequest(QUrl("https://update.dildogram.one/rc/current/desktop2"));
 	_reply = _manager->get(request);
 	connect(_reply,
 			&QNetworkReply::finished,
