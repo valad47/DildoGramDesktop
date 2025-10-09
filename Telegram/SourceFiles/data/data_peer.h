@@ -451,9 +451,7 @@ public:
 
 	void checkFolder(FolderId folderId);
 
-	void setBarSettings(PeerBarSettings which) {
-		_barSettings.set(which);
-	}
+	void setBarSettings(PeerBarSettings which);
 	[[nodiscard]] auto barSettings() const {
 		return (_barSettings.current() & PeerBarSetting::Unknown)
 			? std::nullopt
@@ -466,6 +464,7 @@ public:
 	}
 	[[nodiscard]] int paysPerMessage() const;
 	void clearPaysPerMessage();
+	[[nodiscard]] bool hideLinks() const;
 	[[nodiscard]] QString requestChatTitle() const;
 	[[nodiscard]] TimeId requestChatDate() const;
 	[[nodiscard]] UserData *businessBot() const;
