@@ -42,7 +42,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtGui/QScreen>
 #include <QtWidgets/QApplication>
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/features/streamer_mode/streamer_mode.h"
 
 

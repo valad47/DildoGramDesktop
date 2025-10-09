@@ -19,7 +19,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "history/history.h"
 #include "main/main_session.h"
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/ayu_settings.h"
 
 

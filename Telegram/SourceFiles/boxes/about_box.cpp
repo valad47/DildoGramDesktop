@@ -41,18 +41,18 @@ rpl::producer<TextWithEntities> Text() {
 		lt_gpl_link,
 		rpl::single(Ui::Text::Link(
 			"GNU GPL",
-			"https://github.com/AyuGram/AyuGramDesktop/blob/master/LICENSE")),
+			"https://github.com/DildoGram/DildoGramDesktop/blob/master/LICENSE")),
 		lt_github_link,
 		rpl::single(Ui::Text::Link(
 			"GitHub",
-			"https://github.com/AyuGram/AyuGramDesktop")),
+			"https://github.com/DildoGram/DildoGramDesktop")),
 		Ui::Text::WithEntities);
 }
 
 } // namespace
 
 void AboutBox(not_null<Ui::GenericBox*> box, Window::SessionController* controller) {
-	box->setTitle(rpl::single(u"AyuGram Desktop"_q));
+	box->setTitle(rpl::single(u"DildoGram Desktop"_q));
 
 	auto layout = box->verticalLayout();
 
@@ -87,7 +87,7 @@ void AboutBox(not_null<Ui::GenericBox*> box, Window::SessionController* controll
 
 	box->addButton(tr::lng_close(), [=] { box->closeBox(); });
 	box->addLeftButton(
-		rpl::single(QString("@AyuGramReleases")),
+		rpl::single(QString("@DildoGramReleases")),
 		[box, controller]
 		{
 			box->closeBox();

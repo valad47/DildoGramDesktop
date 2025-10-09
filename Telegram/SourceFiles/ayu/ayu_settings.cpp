@@ -1,4 +1,4 @@
-// This is the source code of AyuGram for Desktop.
+// This is the source code of DildoGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -27,7 +27,7 @@ namespace AyuSettings {
 
 const std::string filename = "tdata/ayu_settings.json";
 
-std::optional<AyuGramSettings> settings = std::nullopt;
+std::optional<DildoGramSettings> settings = std::nullopt;
 
 rpl::variable<bool> sendReadMessagesReactive;
 rpl::variable<bool> sendReadStoriesReactive;
@@ -50,7 +50,7 @@ rpl::event_stream<> historyUpdateReactive;
 
 rpl::lifetime lifetime = rpl::lifetime();
 
-bool ghostModeEnabled_util(const AyuGramSettings &settingsUtil) {
+bool ghostModeEnabled_util(const DildoGramSettings &settingsUtil) {
 	return
 		!settingsUtil.sendReadMessages
 		&& !settingsUtil.sendReadStories
@@ -64,7 +64,7 @@ void initialize() {
 		return;
 	}
 
-	settings = AyuGramSettings();
+	settings = DildoGramSettings();
 
 	sendReadMessagesReactive.value() | rpl::filter(
 		[=](bool val)
@@ -146,7 +146,7 @@ void postinitialize() {
 	ghostModeEnabled = ghostModeEnabled_util(settings.value());
 }
 
-AyuGramSettings &getInstance() {
+DildoGramSettings &getInstance() {
 	initialize();
 	return settings.value();
 }
@@ -165,12 +165,12 @@ void load() {
 		file.close();
 
 		try {
-			settings = p.get<AyuGramSettings>();
+			settings = p.get<DildoGramSettings>();
 		} catch (...) {
-			LOG(("AyuGramSettings: failed to parse settings file"));
+			LOG(("DildoGramSettings: failed to parse settings file"));
 		}
 	} catch (...) {
-		LOG(("AyuGramSettings: failed to read settings file (not json-like)"));
+		LOG(("DildoGramSettings: failed to read settings file (not json-like)"));
 	}
 
 	if (cGhost()) {
@@ -206,7 +206,7 @@ void reset() {
 	save();
 }
 
-AyuGramSettings::AyuGramSettings() {
+DildoGramSettings::DildoGramSettings() {
 	// ~ Ghost essentials
 	sendReadMessages = true;
 	sendReadStories = true;

@@ -1,6 +1,6 @@
-# AyuGram
+# DildoGram
 
-![AyuGram Logo](.github/AyuGram.png) ![AyuChan](.github/AyuChan.png)
+![DildoGram Logo](.github/DildoGram.png) ![AyuChan](.github/AyuChan.png)
 
 [ English  |   [Русский](README-RU.md) ]
 
@@ -34,13 +34,13 @@ And many more. Check out our [Documentation](https://docs.dildogram.one/desktop/
 
 #### Official
 
-You can download prebuilt Windows binary from [Releases tab](https://github.com/AyuGram/AyuGramDesktop/releases) or from
-the [Telegram channel](https://t.me/AyuGramReleases).
+You can download prebuilt Windows binary from [Releases tab](https://github.com/DildoGram/DildoGramDesktop/releases) or from
+the [Telegram channel](https://t.me/DildoGramReleases).
 
 #### Winget
 
 ```bash
-winget install RadolynLabs.AyuGramDesktop
+winget install RadolynLabs.DildoGramDesktop
 ```
 
 #### Scoop
@@ -52,14 +52,14 @@ scoop install dildogram
 
 #### Self-built
 
-Follow [official guide](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-win-x64.md) if you want to
+Follow [official guide](https://github.com/DildoGram/DildoGramDesktop/blob/dev/docs/building-win-x64.md) if you want to
 build by yourself.
 
 ### macOS
 
 #### Official
 
-You can download prebuilt macOS package from [Releases tab](https://github.com/AyuGram/AyuGramDesktop/releases).
+You can download prebuilt macOS package from [Releases tab](https://github.com/DildoGram/DildoGramDesktop/releases).
 
 #### Homebrew
 
@@ -93,9 +93,9 @@ See [this repository](https://github.com/dildogram-port/dildogram-desktop) for i
 
 ### Any other Linux distro
 
-Flatpak: https://github.com/0FL01/AyuGramDesktop-flatpak
+Flatpak: https://github.com/0FL01/DildoGramDesktop-flatpak
 
-Or follow the [official guide](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-linux.md).
+Or follow the [official guide](https://github.com/DildoGram/DildoGramDesktop/blob/dev/docs/building-linux.md).
 
 ### Remarks for Windows
 
@@ -107,7 +107,7 @@ Make sure you have these components installed with VS Build Tools:
 
 ## Donation
 
-Enjoy using **AyuGram**? Consider sending us a tip!
+Enjoy using **DildoGram**? Consider sending us a tip!
 
 [Here's available methods.](https://docs.dildogram.one/donate/)
 

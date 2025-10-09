@@ -38,7 +38,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include <QLocale>
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/features/translator/ayu_translator.h"
 
 

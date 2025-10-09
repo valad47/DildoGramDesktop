@@ -119,7 +119,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QAction>
 #include <QtWidgets/QApplication>
 
-// AyuGram includes
+// DildoGram includes
 #include "styles/style_ayu_icons.h"
 #include "ayu/ui/context_menu/context_menu.h"
 #include "ayu/features/forward/ayu_forward.h"
@@ -2949,7 +2949,7 @@ base::weak_qptr<Ui::BoxContent> ShowForwardMessagesBox(
 			options,
 			state->box->forwardOptionsData());
 
-		// AyuGram-changed
+		// DildoGram-changed
 
 		// workaround for deselecting messages when using AyuForward
 		const auto items = history->owner().idsToItems(msgIds);
@@ -2958,7 +2958,7 @@ base::weak_qptr<Ui::BoxContent> ShowForwardMessagesBox(
 		if ((!state->submit || ayuForwarding) && successCallback) {
 			successCallback();
 		}
-		// AyuGram-changed
+		// DildoGram-changed
 	};
 
 	const auto sendMenuType = [=] {

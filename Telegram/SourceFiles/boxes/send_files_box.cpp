@@ -65,7 +65,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include <QtCore/QMimeData>
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/ayu_settings.h"
 #include "base/unixtime.h"
 #include "styles/style_menu_icons.h"
@@ -2018,7 +2018,7 @@ Fn<void(Api::SendOptions)> SendFilesBox::sendCallback() {
 
 SendFilesBox::~SendFilesBox() = default;
 
-// AyuGram files reordering
+// DildoGram files reordering
 
 bool SendFilesBox::isFileBlock(int i) const {
 	using Type = Ui::PreparedFile::Type;

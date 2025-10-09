@@ -1,4 +1,4 @@
-// This is the source code of AyuGram for Desktop.
+// This is the source code of DildoGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -22,7 +22,7 @@
 namespace Settings {
 
 rpl::producer<QString> AyuGhost::title() {
-	return rpl::single(QString("AyuGram"));
+	return rpl::single(QString("DildoGram"));
 }
 
 AyuGhost::AyuGhost(

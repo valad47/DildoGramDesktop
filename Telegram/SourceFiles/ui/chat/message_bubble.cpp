@@ -12,7 +12,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "ui/chat/chat_style.h"
 #include "styles/style_chat.h"
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/ayu_settings.h"
 
 

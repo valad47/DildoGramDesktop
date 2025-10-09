@@ -33,7 +33,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "window/window_session_controller.h"
 #include "mainwindow.h"
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/ayu_url_handlers.h"
 
 

@@ -1,4 +1,4 @@
-// This is the source code of AyuGram for Desktop.
+// This is the source code of DildoGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -47,10 +47,10 @@ void AyuLanguage::fetchLanguage(const QString &id, const QString &baseId) {
 	// https://crowdin.com/project/dildogram/discussions/6
 	QUrl url;
 	if (!finalLangPackId.isEmpty() && !baseId.isEmpty() && !needFallback) {
-		url.setUrl(qsl("https://cdn.jsdelivr.net/gh/AyuGram/Languages@l10n_main/values/langs/%1/Shared.json").arg(
+		url.setUrl(qsl("https://cdn.jsdelivr.net/gh/DildoGram/Languages@l10n_main/values/langs/%1/Shared.json").arg(
 			finalLangPackId));
 	} else {
-		url.setUrl(qsl("https://cdn.jsdelivr.net/gh/AyuGram/Languages@l10n_main/values/langs/%1/Shared.json").arg(
+		url.setUrl(qsl("https://cdn.jsdelivr.net/gh/DildoGram/Languages@l10n_main/values/langs/%1/Shared.json").arg(
 			needFallback ? baseId : finalLangPackId));
 	}
 	_chkReply = networkManager.get(QNetworkRequest(url));
@@ -66,7 +66,7 @@ void AyuLanguage::fetchFinished() {
 	auto statusCode = _chkReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
 	if (statusCode == 404 && !langPackId.isEmpty() && !langPackBaseId.isEmpty() && !needFallback) {
-		LOG(("AyuGram Language not found! Fallback to main language: %1...").arg(langPackBaseId));
+		LOG(("DildoGram Language not found! Fallback to main language: %1...").arg(langPackBaseId));
 		needFallback = true;
 		_chkReply->disconnect();
 		fetchLanguage("", langPackBaseId);
@@ -92,12 +92,12 @@ void AyuLanguage::fetchError(QNetworkReply::NetworkError e) {
 		const auto id = Lang::GetInstance().id();
 
 		if (!id.isEmpty() && !baseId.isEmpty() && !needFallback) {
-			LOG(("AyuGram Language not found! Fallback to main language: %1...").arg(baseId));
+			LOG(("DildoGram Language not found! Fallback to main language: %1...").arg(baseId));
 			needFallback = true;
 			_chkReply->disconnect();
 			fetchLanguage("", baseId);
 		} else {
-			LOG(("AyuGram Language not found!"));
+			LOG(("DildoGram Language not found!"));
 			_chkReply = nullptr;
 		}
 	}

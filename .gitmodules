@@ -21,7 +21,7 @@
 	url = https://github.com/desktop-app/lib_base.git
 [submodule "Telegram/codegen"]
 	path = Telegram/codegen
-	url = https://github.com/AyuGram/codegen.git
+	url = https://github.com/DildoGram/codegen.git
 [submodule "Telegram/lib_ui"]
 	path = Telegram/lib_ui
 	url = https://github.com/valad47/lib_ui.git
@@ -93,4 +93,4 @@
 	url = https://github.com/flatpak/xdg-desktop-portal.git
 [submodule "Telegram/lib_icu"]
 	path = Telegram/lib_icu
-	url = https://github.com/AyuGram/lib_icu.git
+	url = https://github.com/DildoGram/lib_icu.git

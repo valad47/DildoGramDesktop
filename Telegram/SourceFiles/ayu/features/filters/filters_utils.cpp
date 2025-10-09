@@ -1,4 +1,4 @@
-// This is the source code of AyuGram for Desktop.
+// This is the source code of DildoGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -92,7 +92,7 @@ void FilterUtils::publishFilters() {
 
 	QHttpPart titlePart;
 	titlePart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"title\""));
-	titlePart.setBody("AyuGram Filters");
+	titlePart.setBody("DildoGram Filters");
 
 	multiPart->append(contentPart);
 	multiPart->append(syntaxPart);

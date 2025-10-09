@@ -1,6 +1,6 @@
-# AyuGram
+# DildoGram
 
-![AyuGram Лого](.github/AyuGram.png) ![AyuChan](.github/AyuChan.png)
+![DildoGram Лого](.github/DildoGram.png) ![AyuChan](.github/AyuChan.png)
 
 [ [English](README.md)  | Русский ]
 
@@ -33,13 +33,13 @@
 
 #### Официальная версия
 
-Вы можете скачать готовый бинарный файл со вкладки [Releases](https://github.com/AyuGram/AyuGramDesktop/releases) или из
-[Телеграм канала](https://t.me/AyuGramReleases).
+Вы можете скачать готовый бинарный файл со вкладки [Releases](https://github.com/DildoGram/DildoGramDesktop/releases) или из
+[Телеграм канала](https://t.me/DildoGramReleases).
 
 #### Winget
 
 ```bash
-winget install RadolynLabs.AyuGramDesktop
+winget install RadolynLabs.DildoGramDesktop
 ```
 
 #### Scoop
@@ -51,14 +51,14 @@ scoop install dildogram
 
 #### Сборка вручную
 
-Следуйте [официальному руководству](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-win-x64.md), если
-вы хотите собрать AyuGram сами.
+Следуйте [официальному руководству](https://github.com/DildoGram/DildoGramDesktop/blob/dev/docs/building-win-x64.md), если
+вы хотите собрать DildoGram сами.
 
 ### macOS
 
 #### Официальная версия
 
-Вы можете скачать подписанный пакет со вкладки [Releases](https://github.com/AyuGram/AyuGramDesktop/releases).
+Вы можете скачать подписанный пакет со вкладки [Releases](https://github.com/DildoGram/DildoGramDesktop/releases).
 
 #### Homebrew
 
@@ -92,9 +92,9 @@ brew install --cask dildogram
 
 ### Любой другой Линукс дистрибутив
 
-Flatpak: https://github.com/0FL01/AyuGramDesktop-flatpak
+Flatpak: https://github.com/0FL01/DildoGramDesktop-flatpak
 
-Или следуйте [официальному руководству](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-linux.md).
+Или следуйте [официальному руководству](https://github.com/DildoGram/DildoGramDesktop/blob/dev/docs/building-linux.md).
 
 ### Примечания для Windows
 
@@ -106,7 +106,7 @@ Flatpak: https://github.com/0FL01/AyuGramDesktop-flatpak
 
 ## Пожертвования
 
-Вам нравится использовать **AyuGram**? Оставьте нам чаевые!
+Вам нравится использовать **DildoGram**? Оставьте нам чаевые!
 
 [Здесь доступные варианты.](https://docs.dildogram.one/donate/)
 

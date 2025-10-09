@@ -36,7 +36,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "ui/ui_utility.h"
 #include "styles/style_info.h"
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/ayu_settings.h"
 
 

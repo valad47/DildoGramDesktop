@@ -97,7 +97,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMimeData>
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/features/forward/ayu_forward.h"
 
 

@@ -23,7 +23,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "main/main_session.h"
 #include "spellcheck/platform/platform_language.h"
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/features/translator/ayu_translator.h"
 
 

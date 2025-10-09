@@ -63,7 +63,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtGui/QGuiApplication>
 #include <QtGui/QClipboard>
 
-// AyuGram includes
+// DildoGram includes
 #include "ayu/ayu_settings.h"
 #include "ayu/utils/telegram_helpers.h"
 #include "ayu/features/forward/ayu_forward.h"
@@ -1742,7 +1742,7 @@ ShareBox::SubmitCallback ShareBox::DefaultForwardCallback(
 		const auto requestType = Data::Histories::RequestType::Send;
 
 
-		// AyuGram-changed
+		// DildoGram-changed
 		const auto dismiss = [=]
 		{
 			if (show->valid()) {
@@ -1779,7 +1779,7 @@ ShareBox::SubmitCallback ShareBox::DefaultForwardCallback(
 			dismiss();
 			return;
 		}
-		// AyuGram-changed
+		// DildoGram-changed
 
 
 		for (const auto thread : result) {

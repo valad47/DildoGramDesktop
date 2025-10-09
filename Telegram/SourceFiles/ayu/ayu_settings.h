@@ -1,4 +1,4 @@
-// This is the source code of AyuGram for Desktop.
+// This is the source code of DildoGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -40,10 +40,10 @@
 
 namespace AyuSettings {
 
-class AyuGramSettings
+class DildoGramSettings
 {
 public:
-	AyuGramSettings();
+	DildoGramSettings();
 
 	bool sendReadMessages;
 	bool sendReadStories;
@@ -255,7 +255,7 @@ void set_adaptiveCoverColor(bool val);
 
 void set_crashReporting(bool val);
 
-inline void to_json(nlohmann::json &nlohmann_json_j, const AyuGramSettings &nlohmann_json_t) {
+inline void to_json(nlohmann::json &nlohmann_json_j, const DildoGramSettings &nlohmann_json_t) {
 	NLOHMANN_JSON_TO(sendReadMessages)
 	NLOHMANN_JSON_TO(sendReadStories)
 	NLOHMANN_JSON_TO(sendOnlinePackets)
@@ -338,8 +338,8 @@ inline void to_json(nlohmann::json &nlohmann_json_j, const AyuGramSettings &nloh
 	NLOHMANN_JSON_TO(crashReporting)
 }
 
-inline void from_json(const nlohmann::json &nlohmann_json_j, AyuGramSettings &nlohmann_json_t) {
-	const AyuGramSettings nlohmann_json_default_obj{};
+inline void from_json(const nlohmann::json &nlohmann_json_j, DildoGramSettings &nlohmann_json_t) {
+	const DildoGramSettings nlohmann_json_default_obj{};
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(sendReadMessages)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(sendReadStories)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(sendOnlinePackets)
@@ -422,7 +422,7 @@ inline void from_json(const nlohmann::json &nlohmann_json_j, AyuGramSettings &nl
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(crashReporting)
 }
 
-AyuGramSettings &getInstance();
+DildoGramSettings &getInstance();
 
 void load();
 void save();
