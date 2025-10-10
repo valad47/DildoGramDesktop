@@ -98,7 +98,7 @@ PRIVATE
     desktop-app::external_xxhash
 
     # DildoGram filters
-    dildogram::lib_icu
+    ayugram::lib_icu
 )
 
 set(dildogram_files
