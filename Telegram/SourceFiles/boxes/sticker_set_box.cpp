@@ -758,7 +758,7 @@ void StickerSetBox::updateButtons() {
 						_inner->setReorderState(true);
 						updateButtons();
 					},
-					&st::menuIconManage);
+					&st::menuIconReorder);
 			});
 		}();
 		const auto addPackIdActions = [=](const std::shared_ptr<base::unique_qptr<Ui::PopupMenu>> &menu)

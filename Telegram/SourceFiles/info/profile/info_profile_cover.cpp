@@ -570,7 +570,7 @@ Cover::Cover(
 : Cover(
 	parent,
 	controller,
-	topic->channel(),
+	topic->peer(),
 	topic,
 	Role::Info,
 	TitleValue(topic),
