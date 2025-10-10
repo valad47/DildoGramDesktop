@@ -4828,7 +4828,7 @@ bool Message::hasVisibleText() const {
 		return false;
 	} else if (textItem->emptyText()) {
 		if (const auto media = textItem->media()) {
-			return media->storyExpired();
+			return media->storyExpired() || media->storyUnsupported();
 		}
 		return false;
 	}
@@ -4858,7 +4858,7 @@ void Message::refreshInfoSkipBlock(HistoryItem *textItem) {
 	const auto hasTextSkipBlock = [&] {
 		if (!textItem || textItem->_text.empty()) {
 			if (const auto media = data()->media()) {
-				return media->storyExpired();
+				return media->storyExpired() || media->storyUnsupported();
 			}
 			return false;
 		} else if (factcheckBlock()
