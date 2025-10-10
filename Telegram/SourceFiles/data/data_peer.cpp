@@ -1586,6 +1586,7 @@ bool PeerData::isAyuNoForwards() const {
 		return chat->isAyuNoForwards();
 	}
 	return true;
+}
 
 bool PeerData::useSubsectionTabs() const {
 	if (const auto bot = asBot()) {
