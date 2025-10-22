@@ -18,11 +18,11 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #endif // TDESKTOP_ALLOW_CLOSED_ALPHA
 
 // used in Updater.cpp and Setup.iss for Windows
-constexpr auto AppId = "{53F49750-6209-4FBF-9CA8-7A333C87D666}"_cs;
+constexpr auto AppId = "{53F49750-6209-4FBF-9CA8-7A333C871623}"_cs;
 constexpr auto AppNameOld = "DildoGram for Windows"_cs;
 constexpr auto AppName = "DildoGram Desktop"_cs;
 constexpr auto AppFile = "DildoGram"_cs;
-constexpr auto AppVersion = 6002003;
-constexpr auto AppVersionStr = "6.2.3";
+constexpr auto AppVersion = 6002004;
+constexpr auto AppVersionStr = "6.2.4";
 constexpr auto AppBetaVersion = false;
 constexpr auto AppAlphaVersion = TDESKTOP_ALPHA_VERSION;
