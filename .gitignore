@@ -1,5 +1,11 @@
 /out/
 build
+src
+pkg
+*.pkg.tar.zst
+DildoGramDesktop
+td
+PKGBUILD
 Debug/
 Release/
 /ThirdParty/
