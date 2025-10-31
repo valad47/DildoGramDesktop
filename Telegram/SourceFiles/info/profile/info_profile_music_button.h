@@ -8,10 +8,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #pragma once
 
 #include "ui/widgets/buttons.h"
-
-namespace Ui {
-class FlatLabel;
-} // namespace Ui
+#include "ui/text/format_song_name.h"
+#include "ui/text/text.h"
 
 namespace Data {
 class DocumentMedia;
@@ -20,10 +18,11 @@ class DocumentMedia;
 namespace Info::Profile {
 
 struct MusicButtonData {
-	QString performer;
+/*	QString performer;
 	QString title;
 	FullMsgId msgId;
-	std::shared_ptr<Data::DocumentMedia> mediaView;
+	std::shared_ptr<Data::DocumentMedia> mediaView;*/
+	Ui::Text::FormatSongName name;
 };
 
 class MusicButton final : public Ui::RippleButton {
@@ -32,13 +31,18 @@ public:
 	~MusicButton();
 
 	void updateData(MusicButtonData data);
+	void setOverrideBg(std::optional<QColor> color);
 
 private:
 	void paintEvent(QPaintEvent *e) override;
 	int resizeGetHeight(int newWidth) override;
 
-	std::unique_ptr<Ui::FlatLabel> _performer;
-	std::unique_ptr<Ui::FlatLabel> _title;
+	Ui::Text::String _performer;
+	Ui::Text::String _title;
+	std::optional<QColor> _overrideBg;
+
+	const QString _noteSymbol;
+	const int _noteWidth;
 
 };
 
