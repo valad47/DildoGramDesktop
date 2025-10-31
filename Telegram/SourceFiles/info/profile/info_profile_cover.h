@@ -46,7 +46,7 @@ namespace Info::Profile {
 
 class BadgeTooltip;
 class EmojiStatusPanel;
-class AyuMusicButton;
+class MusicButton;
 class Badge;
 class StatusLabel;
 
@@ -184,7 +184,7 @@ private:
 	//object_ptr<CoverDropArea> _dropArea = { nullptr };
 	base::Timer _refreshStatusTimer;
 
-	object_ptr<Ui::SlideWrap<AyuMusicButton>> _musicButton = { nullptr };
+	std::unique_ptr<MusicButton> _musicButton;
 
 	rpl::event_stream<Section> _showSection;
 

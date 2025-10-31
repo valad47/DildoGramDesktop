@@ -125,7 +125,6 @@ Enjoy using **DildoGram**? Consider sending us a tip!
 - [JSON for Modern C++](https://github.com/nlohmann/json)
 - [SQLite](https://github.com/sqlite/sqlite)
 - [sqlite_orm](https://github.com/fnc12/sqlite_orm)
-- [androidx sources](https://github.com/androidx/androidx)
 
 ### Icons
 

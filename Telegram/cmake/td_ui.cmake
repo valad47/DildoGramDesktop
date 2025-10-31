@@ -158,13 +158,12 @@ PRIVATE
 
     info/profile/info_profile_icon.cpp
     info/profile/info_profile_icon.h
-    # AyuGram fix
-    #info/profile/info_profile_music_button.cpp
-    #info/profile/info_profile_music_button.h
     info/profile/info_profile_text.cpp
     info/profile/info_profile_text.h
     info/profile/info_profile_top_bar_action_button.cpp
     info/profile/info_profile_top_bar_action_button.h
+    info/profile/info_profile_music_button.cpp
+    info/profile/info_profile_music_button.h
     info/userpic/info_userpic_bubble_wrap.cpp
     info/userpic/info_userpic_bubble_wrap.h
     info/userpic/info_userpic_color_circle_button.cpp
