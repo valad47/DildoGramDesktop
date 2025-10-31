@@ -23,6 +23,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "data/stickers/data_custom_emoji.h"
 #include "info/profile/info_profile_badge.h"
 #include "info/profile/info_profile_badge_tooltip.h"
+#include "info/profile/info_profile_music_button.h"
 #include "info/profile/info_profile_emoji_status_panel.h"
 #include "info/profile/info_profile_status_label.h"
 #include "info/profile/info_profile_values.h"
