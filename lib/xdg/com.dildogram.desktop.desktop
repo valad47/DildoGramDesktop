@@ -2,7 +2,7 @@
 Name=DildoGram Desktop
 Comment=Desktop version of DildoGram - ToS breaking Telegram client
 TryExec=DildoGram
-Exec=env DESKTOPINTEGRATION=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb WEBKIT_DISABLE_DMABUF_RENDERER=1 DildoGram -- %u
+Exec=env DESKTOPINTEGRATION=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb WEBKIT_DISABLE_DMABUF_RENDERER=1 DildoGram -- %U
 Icon=com.dildogram.desktop
 Terminal=false
 StartupWMClass=DildoGram

@@ -1336,6 +1336,7 @@ void SetupChatListQuickAction(
 		}, widget->lifetime());
 		widget->paintRequest() | rpl::start_with_next([=] {
 			auto p = QPainter(widget);
+			auto hq = PainterHighQualityEnabler(p);
 
 			const auto height = st::dialogsRowHeight;
 			const auto actionWidth = st::dialogsQuickActionRippleSize * 0.75;
@@ -1364,7 +1365,6 @@ void SetupChatListQuickAction(
 			const auto label = actionToLabel(group->current());
 			const auto isDisabled = (label == LabelType::Disabled);
 
-			auto hq = PainterHighQualityEnabler(p);
 			p.fillRect(
 				QRect(0, 0, rect::right(rect), st::lineWidth),
 				st::windowBgOver);
@@ -1650,11 +1650,10 @@ void SetupDefaultThemes(
 
 			const auto scheme = ranges::find(kSchemesList, type, &Scheme::type);
 			if (scheme == end(kSchemesList)) {
-				return;
-			}
-
-			updateMessageShotPalette(scheme->path);
-			return;
+				apply(*scheme);
+			} else {
+                group->setValue(chosen());
+            }
 		}
 
 		group->setValue(chosen());
