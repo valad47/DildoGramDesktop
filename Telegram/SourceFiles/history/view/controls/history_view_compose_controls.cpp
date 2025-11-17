@@ -3067,7 +3067,6 @@ void ComposeControls::updateControlsGeometry(QSize size) {
 		- (_editStars ? _editStars->width() : 0)
 		- (settings.showEmojiButtonInMessageField ? _tabbedSelectorToggle->width() : 0)
 		- _tabbedSelectorToggle->width()
->>>>>>> aadc81279a0f3b9e0232c450c033d3270d1cc774
 		- (_likeShown ? _like->width() : 0)
 		- (_botCommandShown && settings.showCommandsButtonInMessageField ? _botCommandStart->width() : 0)
 		- (_silent ? _silent->width() : 0)
