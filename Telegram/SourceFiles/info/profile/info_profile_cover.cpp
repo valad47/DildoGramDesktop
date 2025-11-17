@@ -426,26 +426,43 @@ Cover::Cover(
 
 	setupShowLastSeen();
 
-	_badge->setPremiumClickCallback([=] {
-		if (const auto panel = _emojiStatusPanel.get()) {
-			panel->show(_controller, _badge->widget(), _badge->sizeTag());
-		} else {
-			::Settings::ShowEmojiStatusPremium(_controller, _peer);
-		}
-	});
-
-	const auto isCustomBadge = isCustomBadgePeer(getBareID(_peer));
-	const auto isExtera = isExteraPeer(getBareID(_peer));
-	const auto isSupporter = isSupporterPeer(getBareID(_peer));
-	if (isExtera || isSupporter || isCustomBadge) {
-		_exteraBadge->setPremiumClickCallback(badgeClickHandler(_peer));
+	if (_badge) {
+		_badge->setPremiumClickCallback([=] {
+			if (const auto panel = _emojiStatusPanel.get()) {
+				panel->show(_controller, _badge->widget(), _badge->sizeTag());
+			} else {
+				::Settings::ShowEmojiStatusPremium(_controller, _peer);
+			}
+		});
 	}
-	rpl::merge(
-		_botVerify->updated(),
-		_badge->updated(),
-		_verified->updated(),
-		_exteraBadge->updated()
-	) | rpl::start_with_next([=] {
+	auto badgeUpdates = rpl::producer<rpl::empty_value>();
+	if (_badge) {
+		badgeUpdates = rpl::merge(
+			std::move(badgeUpdates),
+			_badge->updated());
+	}
+	if (_verified) {
+		badgeUpdates = rpl::merge(
+			std::move(badgeUpdates),
+			_verified->updated());
+	}
+	if (_botVerify) {
+		badgeUpdates = rpl::merge(
+			std::move(badgeUpdates),
+			_botVerify->updated());
+	}
+	if (_exteraBadge) {
+		const auto isCustomBadge = isCustomBadgePeer(getBareID(_peer));
+		const auto isExtera = isExteraPeer(getBareID(_peer));
+		const auto isSupporter = isSupporterPeer(getBareID(_peer));
+		if (isExtera || isSupporter || isCustomBadge) {
+			_exteraBadge->setPremiumClickCallback(badgeClickHandler(_peer));
+		}
+		badgeUpdates = rpl::merge(
+			std::move(badgeUpdates),
+			_exteraBadge->updated());
+	}
+	std::move(badgeUpdates) | rpl::start_with_next([=] {
 		refreshNameGeometry(width());
 	}, _name->lifetime());
 
@@ -736,8 +753,6 @@ void Cover::setupChangePersonal() {
 	}, _changePersonal->lifetime());
 }
 
-
-
 Cover::~Cover() {
 	base::take(_badgeTooltip);
 	base::take(_badgeOldTooltips);
@@ -745,9 +760,9 @@ Cover::~Cover() {
 
 void Cover::refreshNameGeometry(int newWidth) {
 	auto nameWidth = newWidth - _st.nameLeft - _st.rightSkip;
-	const auto verifiedWidget = _verified->widget();
-	const auto badgeWidget = _badge->widget();
-	const auto exteraWidget = _exteraBadge->widget();
+	const auto verifiedWidget = _verified ? _verified->widget() : nullptr;
+	const auto badgeWidget = _badge ? _badge->widget() : nullptr;
+	const auto exteraWidget = _exteraBadge ? _exteraBadge->widget() : nullptr;
 	if (verifiedWidget) {
 		nameWidth -= verifiedWidget->width();
 	}
@@ -778,20 +793,25 @@ void Cover::refreshNameGeometry(int newWidth) {
 	_name->resizeToNaturalWidth(nameWidth);
 	_name->moveToLeft(nameLeft, _st.nameTop, newWidth);
 	const auto badgeLeft = nameLeft + _name->width();
-	_badge->move(badgeLeft, badgeTop, badgeBottom);
-	_verified->move(
-		badgeLeft + (badgeWidget ? badgeWidget->width() : 0),
-		badgeTop,
-		badgeBottom);
-
-	const auto exteraBadgeLeft = badgeLeft
-		+ (badgeWidget ? badgeWidget->width() : 0)
-		+ (badgeWidget && verifiedWidget ? st::infoVerifiedCheckPosition.x() : 0)
-		+ (verifiedWidget ? verifiedWidget->width() : 0)
-		+ ((badgeWidget || verifiedWidget) ? st::infoVerifiedCheckPosition.x() : 0);
-	const auto exteraBadgeTop = _st.nameTop;
-	const auto exteraBadgeBottom = _st.nameTop + _name->height();
-	_exteraBadge->move(exteraBadgeLeft, exteraBadgeTop, exteraBadgeBottom);
+	if (_badge) {
+		_badge->move(badgeLeft, badgeTop, badgeBottom);
+	}
+	if (_verified) {
+		_verified->move(
+			badgeLeft + (badgeWidget ? badgeWidget->width() : 0),
+			badgeTop,
+			badgeBottom);
+	}
+	if (_exteraBadge) {
+		const auto exteraBadgeLeft = badgeLeft
+			+ (badgeWidget ? badgeWidget->width() : 0)
+			+ (badgeWidget && verifiedWidget ? st::infoVerifiedCheckPosition.x() : 0)
+			+ (verifiedWidget ? verifiedWidget->width() : 0)
+			+ ((badgeWidget || verifiedWidget) ? st::infoVerifiedCheckPosition.x() : 0);
+		const auto exteraBadgeTop = _st.nameTop;
+		const auto exteraBadgeBottom = _st.nameTop + _name->height();
+		_exteraBadge->move(exteraBadgeLeft, exteraBadgeTop, exteraBadgeBottom);
+	}
 }
 
 void Cover::refreshStatusGeometry(int newWidth) {
