@@ -388,11 +388,11 @@ public:
 	void setUserpicPhoto(const MTPPhoto &data);
 
 	void paintUserpic(
-		Painter &p,
+		QPainter &p,
 		Ui::PeerUserpicView &view,
 		PaintUserpicContext context) const;
 	void paintUserpic(
-			Painter &p,
+			QPainter &p,
 			Ui::PeerUserpicView &view,
 			int x,
 			int y,
@@ -407,7 +407,7 @@ public:
 		});
 	}
 	void paintUserpicLeft(
-			Painter &p,
+			QPainter &p,
 			Ui::PeerUserpicView &view,
 			int x,
 			int y,
@@ -490,7 +490,7 @@ public:
 	[[nodiscard]] auto barSettingsValue() const {
 		return (_barSettings.current() & PeerBarSetting::Unknown)
 			? _barSettings.changes()
-			: (_barSettings.value() | rpl::type_erased());
+			: (_barSettings.value() | rpl::type_erased);
 	}
 	[[nodiscard]] int paysPerMessage() const;
 	void clearPaysPerMessage();
@@ -585,8 +585,9 @@ public:
 
 	[[nodiscard]] int peerGiftsCount() const;
 
+	[[nodiscard]] MTPInputPeer input() const;
+
 	const PeerId id;
-	MTPinputPeer input = MTP_inputPeerEmpty();
 
 protected:
 	void updateNameDelayed(
