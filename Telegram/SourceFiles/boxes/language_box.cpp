@@ -1232,8 +1232,7 @@ void LanguageBox::setupTop(not_null<Ui::VerticalLayout*> container) {
 				PremiumFeature::RealTimeTranslation);
 			_translateChatTurnOff.fire(false);
 		}*/
-		return premium
-			&& (checked != Core::App().settings().translateChatEnabled());
+		return checked != Core::App().settings().translateChatEnabled();
 	}) | rpl::on_next([=](bool checked) {
 		Core::App().settings().setTranslateChatEnabled(checked);
 		Core::App().saveSettingsDelayed();

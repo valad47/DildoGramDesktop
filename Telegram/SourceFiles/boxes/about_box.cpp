@@ -36,14 +36,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 namespace {
 
-rpl::producer<TextWithEntities> Text1() {
-	return tr::lng_about_text1(
-		lt_api_link,
-		tr::lng_about_text1_api(tr::url(u"https://core.telegram.org/api"_q)),
-		tr::marked);
-}
-
-rpl::producer<TextWithEntities> Text2() {
+rpl::producer<TextWithEntities> Text() {
 	return tr::lng_about_text2(
 		lt_gpl_link,
 		rpl::single(tr::link(
@@ -53,13 +46,6 @@ rpl::producer<TextWithEntities> Text2() {
 		rpl::single(tr::link(
 			"GitHub",
 			"https://github.com/DildoGram/DildoGramDesktop")),
-		tr::marked);
-}
-
-rpl::producer<TextWithEntities> Text3() {
-	return tr::lng_about_text3(
-		lt_faq_link,
-		tr::lng_about_text3_faq(tr::url(telegramFaqLink())),
 		tr::marked);
 }
 

@@ -88,7 +88,7 @@ QImage getImage(const QString &name) {
 	auto icon = getImage(name);
 	iconWidget->resize(icon.size() / style::DevicePixelRatio());
 	iconWidget->paintRequest(
-	) | rpl::start_with_next([=]
+	) | rpl::on_next([=]
 							 {
 								 auto p = QPainter(iconWidget);
 								 p.drawImage(0, 0, icon);
@@ -96,7 +96,7 @@ QImage getImage(const QString &name) {
 							 iconWidget->lifetime());
 
 	button->sizeValue(
-	) | rpl::start_with_next([=](const QSize &s)
+	) | rpl::on_next([=](const QSize &s)
 							 {
 								 iconWidget->moveToLeft(
 									 button->st().iconLeft
@@ -191,7 +191,7 @@ void SetupCrashReporting(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->crashReporting);
-		}) | start_with_next(
+		}) | on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_crashReporting(enabled);

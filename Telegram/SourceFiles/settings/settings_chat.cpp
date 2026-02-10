@@ -1710,7 +1710,7 @@ void SetupDefaultThemes(
 	}, block->lifetime());
 
 	if (AyuFeatures::MessageShot::isChoosingTheme()) {
-		palette->selected() | rpl::start_with_next(
+		palette->selected() | rpl::on_next(
 			[=](QColor color)
 			{
 				AyuFeatures::MessageShot::setDefaultSelectedColor(color);
@@ -1726,7 +1726,7 @@ void SetupDefaultThemes(
 			},
 			container->lifetime());
 
-		AyuFeatures::MessageShot::resetDefaultSelectedEvents() | rpl::start_with_next([=]
+		AyuFeatures::MessageShot::resetDefaultSelectedEvents() | rpl::on_next([=]
 			{
 				refreshColorizer(AyuFeatures::MessageShot::getSelectedFromDefault()); // hide colorizer
 				group->setValue(Type(-1));

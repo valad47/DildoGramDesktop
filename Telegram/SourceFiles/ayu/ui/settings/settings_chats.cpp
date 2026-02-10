@@ -55,7 +55,7 @@ void SetupStickersAndEmojiSettings(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showOnlyAddedEmojisAndStickers);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showOnlyAddedEmojisAndStickers(enabled);
@@ -172,7 +172,7 @@ void SetupGroupsAndChannels(not_null<Ui::VerticalLayout*> container, not_null<Wi
 		[=](bool enabled)
 		{
 			return (enabled != settings->quickAdminShortcuts);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_quickAdminShortcuts(enabled);
@@ -191,7 +191,7 @@ void SetupGroupsAndChannels(not_null<Ui::VerticalLayout*> container, not_null<Wi
 		[=](bool enabled)
 		{
 			return (enabled != settings->showMessageShot);
-		}) | start_with_next(
+		}) | on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showMessageShot(enabled);
@@ -262,7 +262,7 @@ void SetupMarks(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->replaceBottomInfoWithIcons);
-		}) | start_with_next(
+		}) | on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_replaceBottomInfoWithIcons(enabled);
@@ -285,7 +285,7 @@ void SetupMarks(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->hideFastShare);
-		}) | start_with_next(
+		}) | on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_hideFastShare(enabled);
@@ -304,7 +304,7 @@ void SetupMarks(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->simpleQuotesAndReplies);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_simpleQuotesAndReplies(enabled);
@@ -507,7 +507,7 @@ void SetupMessageFieldElements(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showAttachButtonInMessageField);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showAttachButtonInMessageField(enabled);
@@ -527,7 +527,7 @@ void SetupMessageFieldElements(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showCommandsButtonInMessageField);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showCommandsButtonInMessageField(enabled);
@@ -547,7 +547,7 @@ void SetupMessageFieldElements(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showAutoDeleteButtonInMessageField);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showAutoDeleteButtonInMessageField(enabled);
@@ -567,7 +567,7 @@ void SetupMessageFieldElements(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showEmojiButtonInMessageField);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showEmojiButtonInMessageField(enabled);
@@ -587,7 +587,7 @@ void SetupMessageFieldElements(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showMicrophoneButtonInMessageField);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showMicrophoneButtonInMessageField(enabled);
@@ -617,7 +617,7 @@ void SetupMessageFieldPopups(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showAttachPopup);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showAttachPopup(enabled);
@@ -637,7 +637,7 @@ void SetupMessageFieldPopups(not_null<Ui::VerticalLayout*> container) {
 		[=](bool enabled)
 		{
 			return (enabled != settings->showEmojiPopup);
-		}) | rpl::start_with_next(
+		}) | rpl::on_next(
 		[=](bool enabled)
 		{
 			AyuSettings::set_showEmojiPopup(enabled);
