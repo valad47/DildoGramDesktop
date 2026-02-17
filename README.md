@@ -48,7 +48,7 @@ Install `dildogram-desktop` from [Releases tab](https://github.com/valad47/Dildo
 
 ### Any other Linux distro
 
-Follow the [official guide](https://github.com/DildoGram/DildoGramDesktop/blob/dev/docs/building-linux.md).
+Follow the [official guide](https://github.com/valad47/DildoGramDesktop/blob/dev/docs/building-linux.md).
 
 ### Remarks for Windows
 
