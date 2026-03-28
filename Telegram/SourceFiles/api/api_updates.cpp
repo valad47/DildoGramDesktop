@@ -1127,6 +1127,7 @@ void Updates::applyUpdatesNoPtsCheck(const MTPUpdates &updates) {
 					? peerToMTP(_session->userPeerId())
 					: MTP_peerUser(d.vuser_id())),
 				MTPint(), // from_boosts_applied
+				MTPstring(), // from_rank
 				MTP_peerUser(d.vuser_id()),
 				MTPPeer(), // saved_peer_id
 				d.vfwd_from() ? *d.vfwd_from() : MTPMessageFwdHeader(),
@@ -1169,6 +1170,7 @@ void Updates::applyUpdatesNoPtsCheck(const MTPUpdates &updates) {
 				d.vid(),
 				MTP_peerUser(d.vfrom_id()),
 				MTPint(), // from_boosts_applied
+				MTPstring(), // from_rank
 				MTP_peerChat(d.vchat_id()),
 				MTPPeer(), // saved_peer_id
 				d.vfwd_from() ? *d.vfwd_from() : MTPMessageFwdHeader(),
@@ -1898,6 +1900,10 @@ void Updates::feedUpdate(const MTPUpdate &update) {
 
 	case mtpc_updateChatParticipantAdmin: {
 		session().data().applyUpdate(update.c_updateChatParticipantAdmin());
+	} break;
+
+	case mtpc_updateChatParticipantRank: {
+		session().data().applyUpdate(update.c_updateChatParticipantRank());
 	} break;
 
 	case mtpc_updateChatDefaultBannedRights: {
@@ -2693,6 +2699,7 @@ void Updates::feedUpdate(const MTPUpdate &update) {
 		const auto &data = update.c_updateEmojiGameInfo();
 		_session->diceStickersPacks().apply(data);
 	} break;
+
 	}
 }
 
