@@ -899,8 +899,9 @@ bool AddDeleteMessageAction(
 			}
 			const auto list = HistoryItemsList{ item };
 			if (CanCreateModerateMessagesBox(list)) {
+				const auto opt = DefaultModerateMessagesBoxOptions();
 				controller->show(
-					Box(CreateModerateMessagesBox, list, nullptr));
+					Box(CreateModerateMessagesBox, list, nullptr, opt));
 			} else {
 				const auto suggestModerateActions = false;
 				controller->show(
@@ -2070,17 +2071,33 @@ void AddSelectRestrictionAction(
 	if (addIcon && !menu->empty()) {
 		menu->addSeparator();
 	}
+	const auto user = peer->asUser();
 	auto button = base::make_unique_q<Ui::Menu::MultilineAction>(
 		menu->menu(),
 		menu->st().menu,
 		st::historyHasCustomEmoji,
-		addIcon
+		((addIcon && !user)
 			? st::historySponsoredAboutMenuLabelPosition
-			: st::historyHasCustomEmojiPosition,
-		tr::ayu_UnforwardableContextMenuText(
+			: st::historyHasCustomEmojiPosition),
+		(tr::ayu_UnforwardableContextMenuText(
 			tr::now,
 			tr::rich),
-		addIcon ? &st::menuIconCopyright : nullptr);
+		(peer->isMegagroup()
+			? tr::lng_context_noforwards_info_group(tr::now, tr::rich)
+			: (peer->isChannel())
+			? tr::lng_context_noforwards_info_channel(tr::now, tr::rich)
+			: (user && user->isBot())
+			? tr::lng_context_noforwards_info_bot(tr::now, tr::rich)
+			: user
+			? ((user->flags() & UserDataFlag::NoForwardsMyEnabled)
+				? tr::lng_context_noforwards_info_mine(tr::now, tr::rich)
+				: tr::lng_context_noforwards_info_his(
+					tr::now,
+					lt_user,
+					tr::bold(user->shortName()),
+					tr::rich))
+			: tr::lng_context_noforwards_info_channel(tr::now, tr::rich))),
+		(addIcon && !user) ? &st::menuIconCopyright : nullptr);
 	button->setAttribute(Qt::WA_TransparentForMouseEvents);
 	menu->addAction(std::move(button));
 }
