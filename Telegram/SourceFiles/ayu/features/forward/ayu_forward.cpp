@@ -221,14 +221,16 @@ bool isAyuForwardNeeded(const std::vector<not_null<HistoryItem*>> &items) {
 }
 
 bool isAyuForwardNeeded(not_null<HistoryItem*> item) {
-	if (item->isDeleted() || item->isAyuNoForwards() || item->unsupportedTTL()) {
-		return true;
-	}
-	return false;
+	return item->isDeleted()
+			|| item->isAyuNoForwards()
+			|| item->unsupportedTTL()
+			|| (item->media() && item->media()->ttlSeconds());
 }
 
 bool isFullAyuForwardNeeded(not_null<HistoryItem*> item) {
-	return item->from()->isAyuNoForwards() || item->history()->peer->isAyuNoForwards();
+	return item->from()->isAyuNoForwards()
+			|| item->history()->peer->isAyuNoForwards()
+			|| !item->history()->peer->allowsForwarding();
 }
 
 struct ForwardChunk
