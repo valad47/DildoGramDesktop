@@ -65,10 +65,9 @@ topBarRecentActions: IconButton {
 exteraBadgeToast: Toast(defaultToast) {
 	minWidth: msgMinWidth;
 	maxWidth: 480px;
-	padding: margins(54px, 13px, 19px, 12px);
-	icon: icon {{ "ayu/extera_badge", toastFg }};
-	iconPosition: point(13px, 13px);
+	padding: margins(19px, 13px, 19px, 12px);
 }
+exteraBadgeToastIcon: icon {{ "ayu/extera_badge", toastFg }};
 
 supportLogoSize: 96px;
 

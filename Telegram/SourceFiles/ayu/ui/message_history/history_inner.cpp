@@ -630,6 +630,14 @@ bool InnerWidget::elementHideTopicButton(not_null<const Element*> view) {
 	return false;
 }
 
+void InnerWidget::elementShowAddPollOption(not_null<HistoryView::Element*> view, not_null<PollData*> poll, FullMsgId context, QRect optionRect) {
+	return;
+}
+
+void InnerWidget::elementSubmitAddPollOption(FullMsgId context) {
+	return;
+}
+
 void InnerWidget::saveState(not_null<SectionMemento*> memento) {
 	for (auto &item : _items) {
 		item.clearView();

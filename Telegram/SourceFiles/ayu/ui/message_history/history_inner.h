@@ -134,6 +134,9 @@ public:
 		HistoryView::Element *replacing) override;
 	QString elementAuthorRank(not_null<const HistoryView::Element*> view) override;
 	bool elementHideTopicButton(not_null<const HistoryView::Element*> view) override;
+	void elementShowAddPollOption(not_null<HistoryView::Element*> view, not_null<PollData*> poll, FullMsgId context, QRect optionRect) override;
+	void elementSubmitAddPollOption(FullMsgId context) override;
+
 
 	~InnerWidget();
 
