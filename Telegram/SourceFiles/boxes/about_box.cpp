@@ -52,7 +52,7 @@ rpl::producer<TextWithEntities> Text() {
 } // namespace
 
 void AboutBox(not_null<Ui::GenericBox*> box, Window::SessionController* controller) {
-	box->setTitle(rpl::single(u"DildoGram Desktop"_q));
+	box->setTitle(u"DildoGram Desktop"_q);
 
 	auto layout = box->verticalLayout();
 

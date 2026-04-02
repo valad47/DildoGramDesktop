@@ -184,6 +184,8 @@ Fn<void()> badgeClickHandler(not_null<PeerData*> peer) {
 
 		Ui::Toast::Show({
 			.text = text,
+			.icon = &st::exteraBadgeToastIcon,
+//			.iconPadding = st::exteraBadgeToast.padding,
 			.st = &st::exteraBadgeToast,
 			.adaptive = true,
 			.duration = 3 * crl::time(1000),
