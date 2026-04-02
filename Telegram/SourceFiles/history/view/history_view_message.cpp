@@ -2333,6 +2333,9 @@ void Message::clickHandlerPressedChanged(
 		bool pressed) {
 	const auto startLinkRipple = [&] {
 		if (!_linkRipple) {
+			if (!pressed) {
+				return;
+			}
 			_linkRipple = std::make_unique<LinkRipple>();
 		}
 		_linkRipple->link = handler;
@@ -4790,7 +4793,7 @@ void Message::fromNameUpdated(int width) const {
 				- st::msgPadding.left()
 				- st::msgPadding.right()
 				- nameText->maxWidth()
-				+ (_fromNameStatus
+				- (_fromNameStatus
 					? (st::dialogsPremiumIcon.icon.width()
 						+ st::msgServiceFont->spacew)
 					: 0)

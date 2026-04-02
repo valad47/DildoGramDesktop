@@ -14,6 +14,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "lang/lang_keys.h"
 #include "history/history.h"
 #include "history/history_item.h"
+#include "history/history_item_components.h"
 #include "history/view/history_view_message.h"
 #include "history/view/history_view_cursor_state.h"
 #include "history/view/history_view_reaction_preview.h"
@@ -481,6 +482,11 @@ private:
 	[[nodiscard]] bool hasCloseDate() const;
 	[[nodiscard]] QString closeTimerText() const;
 	[[nodiscard]] bool timerFooterMultiline(int paintw) const;
+	[[nodiscard]] bool centeredOverlapsInfo(
+		int textWidth,
+		int innerWidth) const;
+	[[nodiscard]] int bottomLineWidth(int innerWidth) const;
+	[[nodiscard]] int dateInfoPadding(int innerWidth) const;
 	void toggleLinkRipple(bool pressed);
 };
 
@@ -519,6 +525,7 @@ int Poll::Footer::countHeight(int innerWidth) const {
 		+ buttonSkip
 		+ st::msgDateFont->height
 		+ (timerLine ? st::msgDateFont->height : 0)
+		+ dateInfoPadding(innerWidth)
 		+ st::msgPadding.bottom();
 }
 
@@ -1881,6 +1888,7 @@ bool Poll::inlineFooter() const {
 bool Poll::canAddOption() const {
 	return (_flags & PollData::Flag::OpenAnswers)
 		&& !(_flags & PollData::Flag::Closed)
+		&& !_parent->data()->Has<HistoryMessageForwarded>()
 		&& (int(_poll->answers.size())
 			< _poll->session().appConfig().pollOptionsLimit());
 }
@@ -2491,7 +2499,8 @@ void Poll::Options::updateAnswers() {
 	auto options = ranges::views::all(
 		_owner->_poll->answers
 	) | ranges::views::transform(&PollAnswer::option) | ranges::to_vector;
-	if (_owner->_flags & PollData::Flag::ShuffleAnswers) {
+	if ((_owner->_flags & PollData::Flag::ShuffleAnswers)
+		&& !(_owner->_flags & PollData::Flag::Creator)) {
 		const auto userId = _owner->_poll->session().userId();
 		const auto pollId = _owner->_poll->id;
 		ranges::sort(options, [&](const QByteArray &a, const QByteArray &b) {
@@ -2535,7 +2544,8 @@ void Poll::Options::updateAnswers() {
 		return result;
 	}) | ranges::to_vector;
 
-	if (_owner->_flags & PollData::Flag::ShuffleAnswers) {
+	if ((_owner->_flags & PollData::Flag::ShuffleAnswers)
+		&& !(_owner->_flags & PollData::Flag::Creator)) {
 		const auto visitorId = _owner->_poll->session().userId();
 		const auto pollId = _owner->_poll->id;
 		ranges::sort(_answers, [&](const Answer &a, const Answer &b) {
@@ -3048,6 +3058,9 @@ int Poll::Options::paintAnswer(
 	if (!context.highlight.pollOption.isEmpty()
 		&& context.highlight.pollOption == answer.option
 		&& context.highlight.collapsion > 0.) {
+		const auto fillingExtra = (_owner->showVotes() && !answer.thumbnail)
+			? (st::historyPollChoiceRight.height() / 2)
+			: 0;
 		const auto absoluteTop = top
 			+ _owner->_headerPart->countHeight(width);
 		const auto to = context.highlightInterpolateTo;
@@ -3057,18 +3070,18 @@ int Poll::Options::paintAnswer(
 		} else if (toProgress <= 0.) {
 			context.highlightPathCache->addRect(
 				0,
-				absoluteTop,
+				absoluteTop + fillingExtra,
 				_owner->width(),
-				height);
+				height + fillingExtra);
 		} else {
 			const auto lerp = [=](int from, int to) {
 				return from + (to - from) * toProgress;
 			};
 			context.highlightPathCache->addRect(
 				lerp(0, to.x()),
-				lerp(absoluteTop, to.y()),
+				lerp(absoluteTop, to.y()) + fillingExtra,
 				lerp(_owner->width(), to.width()),
-				lerp(height, to.height()));
+				lerp(height + fillingExtra, to.height()));
 		}
 	}
 	const auto stm = context.messageStyle();
@@ -3836,9 +3849,70 @@ bool Poll::Footer::timerFooterMultiline(int paintw) const {
 	const auto full = _totalVotesLabel.toString()
 		+ sep
 		+ timerText;
-	const auto fullw = st::msgDateFont->width(full);
+	return centeredOverlapsInfo(st::msgDateFont->width(full), paintw);
+}
+
+bool Poll::Footer::centeredOverlapsInfo(
+		int textWidth,
+		int innerWidth) const {
 	const auto skipw = _owner->_parent->skipBlockWidth();
-	return (paintw + fullw) / 2 > paintw - skipw;
+	return (innerWidth + textWidth) / 2 > innerWidth - skipw;
+}
+
+int Poll::Footer::bottomLineWidth(int innerWidth) const {
+	const auto inline_ = _owner->inlineFooter();
+	const auto timerText = closeTimerText();
+	const auto timerLine = hasTimerLine(innerWidth);
+
+	if (inline_ || _owner->showVotersCount()) {
+		if (timerText.isEmpty()) {
+			return _totalVotesLabel.maxWidth();
+		} else if (timerLine) {
+			return st::msgDateFont->width(timerText);
+		}
+		// Single-line timer — timerFooterMultiline already handles.
+		return 0;
+	}
+
+	if (_owner->_addOptionActive) {
+		return timerLine
+			? 0
+			: st::semiboldFont->width(
+				tr::lng_polls_add_option_save(tr::now));
+	} else if (_owner->isAuthorNotVoted()
+		&& !_owner->_adminShowResults
+		&& !_owner->canSendVotes()) {
+		return timerLine
+			? 0
+			: (_owner->_totalVotes > 0)
+			? _adminVotesLabel.maxWidth()
+			: _totalVotesLabel.maxWidth();
+	} else if (_owner->_adminShowResults
+		&& _owner->isAuthorNotVoted()) {
+		return timerLine ? 0 : _adminBackVoteLabel.maxWidth();
+	}
+
+	if (timerLine) {
+		return st::msgDateFont->width(timerText);
+	}
+	const auto votedPublic = _owner->_voted
+		&& (_owner->_flags & PollData::Flag::PublicVotes);
+	const auto string = (_owner->showVotes() || votedPublic)
+		? ((_owner->_flags & PollData::Flag::PublicVotes)
+			? tr::lng_polls_view_votes(
+				tr::now,
+				lt_count,
+				_owner->_totalVotes)
+			: tr::lng_polls_view_results(tr::now))
+		: tr::lng_polls_submit_votes(tr::now);
+	return st::semiboldFont->width(string);
+}
+
+int Poll::Footer::dateInfoPadding(int innerWidth) const {
+	const auto w = bottomLineWidth(innerWidth);
+	return (w > 0 && centeredOverlapsInfo(w, innerWidth))
+		? st::msgDateFont->height
+		: 0;
 }
 
 Poll::~Poll() {
