@@ -1,4 +1,4 @@
-// This is the source code of DildoGram for Desktop.
+// This is the source code of vlmGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -87,7 +87,7 @@ void SetupCategories(
 	};
 
 	const auto categories = std::vector<CategoryInfo>{
-		{QString("DildoGram"), &st::menuIconGroupReactions, [=] { showOther(AyuGhost::Id()); }},
+		{QString("vlmGram"), &st::menuIconGroupReactions, [=] { showOther(AyuGhost::Id()); }},
 		{asBeta(tr::ayu_CategoryFilters(tr::now)), &st::menuIconTagFilter, [=] { showOther(AyuFilters::Id()); }},
 		{tr::ayu_CategoryGeneral(tr::now), &st::menuIconShowAll, [=] { showOther(AyuGeneral::Id()); }},
 		{tr::ayu_CategoryAppearance(tr::now), &st::menuIconPalette, [=] { showOther(AyuAppearance::Id()); }},
@@ -124,23 +124,23 @@ void SetupLinks(
 	const auto links = std::vector<LinkInfo>{
 		{
 			tr::ayu_LinksChannel(tr::now),
-			QString("@dildogram"),
+			QString("@vlmgram"),
 			&st::menuIconChannel,
 			[=]
 			{
 				controller->showPeerByLink(Window::PeerByLinkInfo{
-					.usernameOrId = QString("dildogram"),
+					.usernameOrId = QString("vlmgram"),
 				});
 			}
 		},
 		{
 			tr::ayu_LinksChats(tr::now),
-			QString("@dildogramchat"),
+			QString("@vlmgramchat"),
 			&st::menuIconChats,
 			[=]
 			{
 				controller->showPeerByLink(Window::PeerByLinkInfo{
-					.usernameOrId = QString("dildogramchat"),
+					.usernameOrId = QString("vlmgramchat"),
 				});
 			}
 		},
@@ -150,16 +150,16 @@ void SetupLinks(
 			&st::menuIconTranslate,
 			[=]
 			{
-				QDesktopServices::openUrl(QString("https://translate.dildogram.one"));
+				QDesktopServices::openUrl(QString("https://translate.vlmgram.one"));
 			}
 		},
 		{
 			tr::ayu_LinksDocumentation(tr::now),
-			QString("docs.dildogram.one"),
+			QString("docs.vlmgram.one"),
 			&st::menuIconIpAddress,
 			[=]
 			{
-				QDesktopServices::openUrl(QString("https://docs.dildogram.one"));
+				QDesktopServices::openUrl(QString("https://docs.vlmgram.one"));
 			}
 		},
 	};
@@ -185,7 +185,7 @@ void AyuMain::setupContent(not_null<Window::SessionController*> controller) {
 	content->add(
 		object_ptr<Ui::FlatLabel>(
 			content,
-			rpl::single(QString("DildoGram Desktop v") + QString::fromLatin1(AppVersionStr)),
+			rpl::single(QString("vlmGram Desktop v") + QString::fromLatin1(AppVersionStr)),
 			st::boxTitle),
 		style::al_top);
 

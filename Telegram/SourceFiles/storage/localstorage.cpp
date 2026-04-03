@@ -36,7 +36,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <unistd.h>
 #endif // Q_OS_WIN
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 
 
@@ -559,7 +559,7 @@ const QString &readAutoupdatePrefixRaw() {
 			return AutoupdatePrefix(value);
 		}
 	}
-	return AutoupdatePrefix("https://update.dildogram.one/");
+	return AutoupdatePrefix("https://update.vlmgram.one/");
 }
 
 void writeAutoupdatePrefix(const QString &prefix) {
@@ -568,7 +568,7 @@ void writeAutoupdatePrefix(const QString &prefix) {
 	}
 
 	const auto current = readAutoupdatePrefixRaw();
-    const auto fixedPrefix = QString::fromStdString("https://update.dildogram.one/");
+    const auto fixedPrefix = QString::fromStdString("https://update.vlmgram.one/");
 	if (current != fixedPrefix) {
 		AutoupdatePrefix(fixedPrefix);
 		QFile f(autoupdatePrefixFile());

@@ -1,6 +1,6 @@
-# DildoGram
+# vlmGram
 
-DildoGramDesktop is a fork of [AyuGramDesktop](https://github.com/AyuGram/AyuGramDesktop) with a target of updating AyuGram to newest Telegram versions, and in future may not have all new AyuGram features
+vlmGramDesktop is a fork of [AyuGramDesktop](https://github.com/AyuGram/AyuGramDesktop) with a target of updating AyuGram to newest Telegram versions, and in future may not have all new AyuGram features
 
 ## Features of Ayugram
 
@@ -32,23 +32,23 @@ And many more. Check out Ayugram [Documentation](https://docs.ayugram.one/deskto
 
 #### Official
 
-You can download prebuilt Windows binary from [Releases tab](https://github.com/valad47/DildoGramDesktop/releases) or from
-the [Telegram channel](https://t.me/DildoGramReleases).
+You can download prebuilt Windows binary from [Releases tab](https://github.com/valad47/vlmGramDesktop/releases) or from
+the [Telegram channel](https://t.me/vlmGramReleases).
 
 #### Self-built
 
-Follow [official guide](https://github.com/valad47/DildoGramDesktop/blob/dev/docs/building-win-x64.md) if you want to
+Follow [official guide](https://github.com/valad47/vlmGramDesktop/blob/dev/docs/building-win-x64.md) if you want to
 build by yourself.
 
 ### Arch Linux
 
 #### Prebuilt binaries
 
-Install `dildogram-desktop` from [Releases tab](https://github.com/valad47/DildoGramDesktop/releases).
+Install `vlmgram-desktop` from [Releases tab](https://github.com/valad47/vlmGramDesktop/releases).
 
 ### Any other Linux distro
 
-Follow the [official guide](https://github.com/valad47/DildoGramDesktop/blob/dev/docs/building-linux.md).
+Follow the [official guide](https://github.com/valad47/vlmGramDesktop/blob/dev/docs/building-linux.md).
 
 ### Remarks for Windows
 

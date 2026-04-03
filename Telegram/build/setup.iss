@@ -1,8 +1,8 @@
-#define MyAppShortName "DildoGram"
-#define MyAppName "DildoGram Desktop"
+#define MyAppShortName "vlmGram"
+#define MyAppName "vlmGram Desktop"
 #define MyAppPublisher "Radolyn Labs"
-#define MyAppURL "https://github.com/DildoGram"
-#define MyAppExeName "DildoGram.exe"
+#define MyAppURL "https://github.com/vlmGram"
+#define MyAppExeName "vlmGram.exe"
 #define MyAppId "53F49750-6209-4FBF-9CA8-7A333C87D666"
 #define CurrentYear GetDateTimeString('yyyy','','')
 

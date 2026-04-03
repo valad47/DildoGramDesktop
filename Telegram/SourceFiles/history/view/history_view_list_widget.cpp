@@ -90,7 +90,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtWidgets/QApplication>
 #include <QtCore/QMimeData>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/utils/telegram_helpers.h"
 
 

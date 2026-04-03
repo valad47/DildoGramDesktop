@@ -62,7 +62,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include <QSvgRenderer>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/features/message_shot/message_shot.h"
 
 

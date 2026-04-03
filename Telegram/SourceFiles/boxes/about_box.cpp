@@ -41,18 +41,18 @@ rpl::producer<TextWithEntities> Text() {
 		lt_gpl_link,
 		rpl::single(tr::link(
 			"GNU GPL",
-			"https://github.com/DildoGram/DildoGramDesktop/blob/master/LICENSE")),
+			"https://github.com/vlmGram/vlmGramDesktop/blob/master/LICENSE")),
 		lt_github_link,
 		rpl::single(tr::link(
 			"GitHub",
-			"https://github.com/DildoGram/DildoGramDesktop")),
+			"https://github.com/vlmGram/vlmGramDesktop")),
 		tr::marked);
 }
 
 } // namespace
 
 void AboutBox(not_null<Ui::GenericBox*> box, Window::SessionController* controller) {
-	box->setTitle(u"DildoGram Desktop"_q);
+	box->setTitle(u"vlmGram Desktop"_q);
 
 	auto layout = box->verticalLayout();
 
@@ -87,12 +87,12 @@ void AboutBox(not_null<Ui::GenericBox*> box, Window::SessionController* controll
 
 	box->addButton(tr::lng_close(), [=] { box->closeBox(); });
 	box->addLeftButton(
-		rpl::single(QString("@DildoGramReleases")),
+		rpl::single(QString("@vlmGramReleases")),
 		[box, controller]
 		{
 			box->closeBox();
 			controller->showPeerByLink(Window::PeerByLinkInfo{
-				.usernameOrId = QString("dildogramreleases"),
+				.usernameOrId = QString("vlmgramreleases"),
 			});
 		});
 

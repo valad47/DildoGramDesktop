@@ -99,7 +99,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtWidgets/QScrollBar>
 #include <QtWidgets/QTextEdit>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 #include "ayu/utils/taptic_engine/taptic_engine.h"
 
@@ -1387,7 +1387,7 @@ void Widget::setupMainMenuToggle() {
 }
 
 void Widget::setupStories() {
-	// DildoGram disableStories
+	// vlmGram disableStories
 	const auto &settings = AyuSettings::getInstance();
 	if (settings.disableStories) {
 		return;
@@ -2169,7 +2169,7 @@ void Widget::checkUpdateStatus() {
 		}
 		_updateTelegram.create(
 			this,
-			tr::ayu_UpdateDildoGram(tr::now),
+			tr::ayu_UpdatevlmGram(tr::now),
 			st::dialogsUpdateButton,
 			st::dialogsInstallUpdate,
 			st::dialogsInstallUpdateOver,

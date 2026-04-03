@@ -17,7 +17,7 @@ Go to ***BuildPath*** and run
 
     sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
-    git clone --recursive https://github.com/DildoGram/DildoGramDesktop.git tdesktop
+    git clone --recursive https://github.com/vlmGram/vlmGramDesktop.git tdesktop
     ./tdesktop/Telegram/build/prepare/mac.sh
 
 ### Building the project

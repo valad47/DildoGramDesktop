@@ -70,7 +70,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "apiwrap.h"
 #include "ui/text/format_values.h" // Ui::FormatPhone
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 
 
@@ -992,7 +992,7 @@ void Updates::updateOnline(crl::time lastNonIdleTime, bool gotOtherOffline) {
 		Core::App().checkAutoLock(lastNonIdleTime);
 	});
 
-	// DildoGram sendOnlinePackets
+	// vlmGram sendOnlinePackets
 	const auto &settings = AyuSettings::getInstance();
 	const auto& config = _session->serverConfig();
 	bool isOnlineOrig = Core::App().hasActiveWindow(&session());

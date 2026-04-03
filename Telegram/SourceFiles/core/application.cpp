@@ -100,7 +100,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include <ksandbox.h>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_infra.h"
 #include "ayu/features/streamer_mode/streamer_mode.h"
 
@@ -1177,7 +1177,7 @@ bool Application::openInternalUrl(const QString &url, QVariant context) {
 }
 
 QString Application::changelogLink() const {
-	return u"https://github.com/valad47/DildoGramDesktop/releases"_q;
+	return u"https://github.com/valad47/vlmGramDesktop/releases"_q;
 }
 
 bool Application::openCustomUrl(
@@ -1886,7 +1886,7 @@ void Application::RegisterUrlScheme() {
 		.arguments = arguments,
 		.protocol = u"tg"_q,
 		.protocolName = u"Telegram Link"_q,
-		.shortAppName = u"DildoGram"_q,
+		.shortAppName = u"vlmGram"_q,
 		.longAppName = QCoreApplication::applicationName(),
 		.displayAppName = AppName.utf16(),
 		.displayAppDescription = AppName.utf16(),

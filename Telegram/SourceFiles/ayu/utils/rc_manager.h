@@ -1,4 +1,4 @@
-// This is the source code of DildoGram for Desktop.
+// This is the source code of vlmGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -97,7 +97,7 @@ private:
 	std::unordered_set<ID> _supporterChannels = {};
 	std::unordered_map<ID, CustomBadge> _customBadges = {};
 
-	QString _donateUsername = QString("@dildogramOwner");
+	QString _donateUsername = QString("@vlmgramOwner");
 	QString _donateAmountUsd = QString("4.00");
 	QString _donateAmountTon = QString("1.30");
 	QString _donateAmountRub = QString("300");

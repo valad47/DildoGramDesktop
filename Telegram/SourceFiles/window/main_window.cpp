@@ -52,7 +52,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include <kurlmimedata.h>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ui/ayu_logo.h"
 
 
@@ -833,7 +833,7 @@ void MainWindow::updateTitle() {
 		: Dialogs::Key();
 	const auto thread = key ? key.thread() : nullptr;
 	if (!thread) {
-		setTitle((user.isEmpty() ? u"DildoGram"_q : user) + added);
+		setTitle((user.isEmpty() ? u"vlmGram"_q : user) + added);
 		return;
 	}
 	const auto history = thread->owningHistory();

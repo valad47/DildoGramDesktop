@@ -365,7 +365,7 @@ void MainWindow::createGlobalMenu() {
 		}
 	};
 
-	auto main = psMainMenu.addMenu(u"DildoGram"_q);
+	auto main = psMainMenu.addMenu(u"vlmGram"_q);
 	{
 		auto callback = [=] {
 			ensureWindowShown();
@@ -375,7 +375,7 @@ void MainWindow::createGlobalMenu() {
 			tr::lng_mac_menu_about_telegram(
 				tr::now,
 				lt_telegram,
-				u"DildoGram"_q),
+				u"vlmGram"_q),
 			std::move(callback))
 		->setMenuRole(QAction::AboutQtRole);
 	}

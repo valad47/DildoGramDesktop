@@ -41,7 +41,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "styles/style_layers.h" // attentionBoxButton
 #include "styles/style_menu_icons.h"
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 
 
@@ -204,7 +204,7 @@ void FiltersMenu::scrollToButton(not_null<Ui::RpWidget*> widget) {
 }
 
 void FiltersMenu::refresh() {
-	// DildoGram hideAllChatsFolder
+	// vlmGram hideAllChatsFolder
 	const auto &settings = AyuSettings::getInstance();
 
 	const auto filters = &_session->session().data().chatsFilters();
@@ -495,7 +495,7 @@ void FiltersMenu::applyReorder(
 		return;
 	}
 
-	// DildoGram hideAllChatsFolder
+	// vlmGram hideAllChatsFolder
 	const auto &settings = AyuSettings::getInstance();
 
 	const auto filters = &_session->session().data().chatsFilters();

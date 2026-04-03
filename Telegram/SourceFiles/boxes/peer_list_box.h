@@ -85,11 +85,11 @@ public:
 
 		return _peer;
 	}
-	// DildoGram
+	// vlmGram
 	void setPeer(not_null<PeerData*> peer) {
 		_peer = peer;
 	}
-	// DildoGram
+	// vlmGram
 
 	[[nodiscard]] PeerListRowId id() const {
 		return _id;

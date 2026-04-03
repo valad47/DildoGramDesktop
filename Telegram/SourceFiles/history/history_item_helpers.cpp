@@ -52,7 +52,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "ui/item_text_options.h"
 #include "lang/lang_keys.h"
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 
 
@@ -849,7 +849,7 @@ MessageFlags FlagsFromMTP(
 			? Flag::IsOrWasScheduled
 			: Flag())
 		| ((flags & MTP::f_views) ? Flag::HasViews : Flag())
-		// DildoGram: removed
+		// vlmGram: removed
 		// | ((flags & MTP::f_noforwards) ? Flag::NoForwards : Flag())
 		| (flags & MTP::f_noforwards ? Flag::AyuNoForwards : Flag())
 		| ((flags & MTP::f_invert_media) ? Flag::InvertMedia : Flag())
@@ -1316,9 +1316,9 @@ void CheckPollVoteNotificationSchedule(
 }
 
 [[nodiscard]] TextWithEntities UnsupportedMessageText() {
-	const auto siteLink = u"https://t.me/DildoGramReleases"_q;
+	const auto siteLink = u"https://t.me/vlmGramReleases"_q;
 	auto result = TextWithEntities{
-		tr::lng_message_unsupported(tr::now, lt_link, siteLink).replace("Telegram", "DildoGram")
+		tr::lng_message_unsupported(tr::now, lt_link, siteLink).replace("Telegram", "vlmGram")
 	};
 	TextUtilities::ParseEntities(result, Ui::ItemTextNoMonoOptions().flags);
 	result.entities.push_front(

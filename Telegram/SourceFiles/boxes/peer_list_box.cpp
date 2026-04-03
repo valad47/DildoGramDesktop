@@ -39,7 +39,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <xxhash.h> // XXH64.
 #include <QtWidgets/QApplication>
 
-// DildoGram includes
+// vlmGram includes
 #include "styles/style_ayu_icons.h"
 
 

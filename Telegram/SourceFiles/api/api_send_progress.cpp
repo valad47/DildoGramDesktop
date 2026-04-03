@@ -15,7 +15,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "data/data_peer_values.h"
 #include "apiwrap.h"
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 
 
@@ -117,11 +117,11 @@ void SendProgressManager::send(const Key &key, int progress) {
 		return;
 	}
 
-	// DildoGram sendUploadProgress
+	// vlmGram sendUploadProgress
 	const auto &settings = AyuSettings::getInstance();
 	if (!settings.sendUploadProgress)
 	{
-		DEBUG_LOG(("[DildoGram] Don't send upload progress"));
+		DEBUG_LOG(("[vlmGram] Don't send upload progress"));
 		return;
 	}
 

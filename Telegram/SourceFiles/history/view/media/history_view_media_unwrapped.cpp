@@ -22,7 +22,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "ui/painter.h"
 #include "styles/style_chat.h"
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/features/message_shot/message_shot.h"
 
 

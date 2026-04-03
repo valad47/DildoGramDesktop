@@ -21,7 +21,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "styles/style_info.h"
 #include "styles/style_dialogs.h"
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/utils/telegram_helpers.h"
 #include "ui/toast/toast.h"
 #include "ui/wrap/slide_wrap.h"

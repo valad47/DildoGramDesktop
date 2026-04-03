@@ -96,7 +96,7 @@ void Email::setupContent() {
 	AddSkipInsteadOfField(content);
 
 	const auto send = [=](Fn<void()> close) {
-		// DildoGram: idk weird crash
+		// vlmGram: idk weird crash
 		if (_requestLifetime) {
 			_requestLifetime.destroy();
 		}

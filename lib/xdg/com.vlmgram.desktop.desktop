@@ -1,11 +1,11 @@
 [Desktop Entry]
-Name=DildoGram Desktop
-Comment=Desktop version of DildoGram - ToS breaking Telegram client
-TryExec=DildoGram
-Exec=env DESKTOPINTEGRATION=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb WEBKIT_DISABLE_DMABUF_RENDERER=1 DildoGram -- %U
-Icon=com.dildogram.desktop
+Name=vlmGram Desktop
+Comment=Desktop version of vlmGram - ToS breaking Telegram client
+TryExec=vlmGram
+Exec=env DESKTOPINTEGRATION=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb WEBKIT_DISABLE_DMABUF_RENDERER=1 vlmGram -- %U
+Icon=com.vlmgram.desktop
 Terminal=false
-StartupWMClass=DildoGram
+StartupWMClass=vlmGram
 Type=Application
 Categories=Chat;Network;InstantMessaging;Qt;
 MimeType=x-scheme-handler/tg;x-scheme-handler/tonsite;
@@ -17,6 +17,6 @@ X-GNOME-UsesNotifications=true
 X-GNOME-SingleWindow=true
 
 [Desktop Action quit]
-Exec=DildoGram -quit
-Name=Quit DildoGram
+Exec=vlmGram -quit
+Name=Quit vlmGram
 Icon=application-exit

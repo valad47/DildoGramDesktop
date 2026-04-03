@@ -1,4 +1,4 @@
-// This is the source code of DildoGram for Desktop.
+// This is the source code of vlmGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -51,7 +51,7 @@ void RCManager::makeRequest() {
 
 	clearSentRequest();
 
-	const auto request = QNetworkRequest(QUrl("https://update.dildogram.one/rc/current/desktop2"));
+	const auto request = QNetworkRequest(QUrl("https://update.vlmgram.one/rc/current/desktop2"));
 	_reply = _manager->get(request);
 	connect(_reply,
 			&QNetworkReply::finished,

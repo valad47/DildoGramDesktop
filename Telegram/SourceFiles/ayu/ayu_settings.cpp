@@ -1,4 +1,4 @@
-// This is the source code of DildoGram for Desktop.
+// This is the source code of vlmGram for Desktop.
 //
 // We do not and cannot prevent the use of our code,
 // but be respectful and credit the original author.
@@ -27,7 +27,7 @@ namespace AyuSettings {
 
 const std::string filename = "tdata/ayu_settings.json";
 
-std::optional<DildoGramSettings> settings = std::nullopt;
+std::optional<vlmGramSettings> settings = std::nullopt;
 
 rpl::variable<bool> sendReadMessagesReactive;
 rpl::variable<bool> sendReadStoriesReactive;
@@ -50,7 +50,7 @@ rpl::event_stream<> historyUpdateReactive;
 
 rpl::lifetime lifetime = rpl::lifetime();
 
-bool ghostModeEnabled_util(const DildoGramSettings &settingsUtil) {
+bool ghostModeEnabled_util(const vlmGramSettings &settingsUtil) {
 	return
 		!settingsUtil.sendReadMessages
 		&& !settingsUtil.sendReadStories
@@ -64,7 +64,7 @@ void initialize() {
 		return;
 	}
 
-	settings = DildoGramSettings();
+	settings = vlmGramSettings();
 
 	sendReadMessagesReactive.value() | rpl::filter(
 		[=](bool val)
@@ -146,7 +146,7 @@ void postinitialize() {
 	ghostModeEnabled = ghostModeEnabled_util(settings.value());
 }
 
-DildoGramSettings &getInstance() {
+vlmGramSettings &getInstance() {
 	initialize();
 	return settings.value();
 }
@@ -165,12 +165,12 @@ void load() {
 		file.close();
 
 		try {
-			settings = p.get<DildoGramSettings>();
+			settings = p.get<vlmGramSettings>();
 		} catch (...) {
-			LOG(("DildoGramSettings: failed to parse settings file"));
+			LOG(("vlmGramSettings: failed to parse settings file"));
 		}
 	} catch (...) {
-		LOG(("DildoGramSettings: failed to read settings file (not json-like)"));
+		LOG(("vlmGramSettings: failed to read settings file (not json-like)"));
 	}
 
 	if (cGhost()) {
@@ -206,7 +206,7 @@ void reset() {
 	save();
 }
 
-DildoGramSettings::DildoGramSettings() {
+vlmGramSettings::vlmGramSettings() {
 	// ~ Ghost essentials
 	sendReadMessages = true;
 	sendReadStories = true;

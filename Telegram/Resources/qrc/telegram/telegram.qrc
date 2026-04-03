@@ -61,6 +61,6 @@
   </qresource>
   <qresource prefix="/misc">
     <file alias="default_shortcuts-custom.json">../../default_shortcuts-custom.json</file>
-    <file alias="com.dildogram.desktop.desktop">../../../../lib/xdg/com.dildogram.desktop.desktop</file>
+    <file alias="com.vlmgram.desktop.desktop">../../../../lib/xdg/com.vlmgram.desktop.desktop</file>
   </qresource>
 </RCC>

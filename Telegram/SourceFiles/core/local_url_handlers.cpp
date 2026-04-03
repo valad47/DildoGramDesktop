@@ -75,7 +75,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include <QtGui/QGuiApplication>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_url_handlers.h"
 
 

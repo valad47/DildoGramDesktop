@@ -336,7 +336,7 @@ private:
 
 	rpl::event_stream<TextWithTags> _textWithTagsRequests;
 
-	// DildoGram files reordering
+	// vlmGram files reordering
 
 	[[nodiscard]] bool isFileBlock(int i) const;
 	void moveFile(int from, int to);

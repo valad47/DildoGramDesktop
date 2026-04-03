@@ -28,7 +28,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QSvgRenderer>
 #include <QBuffer>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 #include "ayu/ui/ayu_logo.h"
 #include "styles/style_ayu_icons.h"
@@ -181,7 +181,7 @@ bool DarkTasbarValueValid/* = false*/;
 		return Window::WithSmallCounter(std::move(result), std::move(args));
 	}
 	QPainter p(&result);
-	PainterHighQualityEnabler hq(p); // DildoGram: fix for lq icons
+	PainterHighQualityEnabler hq(p); // vlmGram: fix for lq icons
 	const auto half = args.size / 2;
 	args.size = half;
 	p.drawPixmap(

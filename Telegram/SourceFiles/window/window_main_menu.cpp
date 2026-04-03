@@ -80,7 +80,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtGui/QGuiApplication>
 #include <QtGui/QClipboard>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 #include "ayu/utils/telegram_helpers.h"
 #include "boxes/abstract_box.h"
@@ -382,8 +382,8 @@ MainMenu::MainMenu(
 	parentResized();
 
 	_telegram->setMarkedText(tr::link(
-		u"DildoGram Desktop"_q,
-		u"https://dildogram.one"_q));
+		u"vlmGram Desktop"_q,
+		u"https://vlmgram.one"_q));
 	_telegram->setLinksTrusted();
 	_version->setMarkedText(
 		tr::link(

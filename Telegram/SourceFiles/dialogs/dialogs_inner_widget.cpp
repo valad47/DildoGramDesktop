@@ -93,7 +93,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtWidgets/QApplication>
 #include <QtCore/QMimeData>
 
-// DildoGram includes
+// vlmGram includes
 #include "styles/style_ayu_icons.h"
 
 

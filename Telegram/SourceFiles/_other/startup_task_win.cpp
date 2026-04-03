@@ -46,7 +46,7 @@ int APIENTRY wWinMain(
 		ShellExecute(
 			nullptr,
 			nullptr,
-			(directory + L"\\DildoGram.exe").c_str(),
+			(directory + L"\\vlmGram.exe").c_str(),
 			L"-autostart",
 			directory.data(),
 			SW_SHOWNORMAL);

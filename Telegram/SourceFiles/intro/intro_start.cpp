@@ -24,7 +24,7 @@ StartWidget::StartWidget(
 	not_null<Data*> data)
 : Step(parent, account, data, true) {
 	setMouseTracking(true);
-	setTitleText(rpl::single(u"DildoGram Desktop"_q));
+	setTitleText(rpl::single(u"vlmGram Desktop"_q));
 	setDescriptionText(tr::lng_intro_about());
 	show();
 }

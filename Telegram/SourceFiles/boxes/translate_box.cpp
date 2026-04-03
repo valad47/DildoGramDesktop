@@ -24,7 +24,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "ui/widgets/multi_select.h"
 #include "ui/text/text_utilities.h"
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/features/translator/ayu_translator.h"
 
 

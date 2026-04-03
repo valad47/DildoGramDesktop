@@ -86,7 +86,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtGui/QGuiApplication>
 #include <QtGui/QWindow>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ui/settings/settings_main.h"
 #include "ayu/ui/utils/ayu_profile_values.h"
 #include "ayu/utils/telegram_helpers.h"
@@ -365,7 +365,7 @@ void BuildDildogramSettings(SectionBuilder &builder) {
         .title = tr::ayu_AyuPreferences(),
         .targetSection = AyuMain::Id(),
         .icon = { &st::menuIconPremium },
-        .keywords = { u"dildogram"_q, u"ayugram"_q, u"settings"_q, u"preferences"_q }
+        .keywords = { u"vlmgram"_q, u"ayugram"_q, u"settings"_q, u"preferences"_q }
     });
 
     builder.addSkip();

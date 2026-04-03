@@ -51,7 +51,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "styles/style_widgets.h"
 #include "styles/style_window.h"
 
-// DildoGram includes
+// vlmGram includes
 #include "styles/style_ayu_icons.h"
 
 

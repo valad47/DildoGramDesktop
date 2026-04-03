@@ -19,9 +19,9 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 // used in Updater.cpp and Setup.iss for Windows
 constexpr auto AppId = "{53F49750-6209-4FBF-9CA8-7A333C871623}"_cs;
-constexpr auto AppNameOld = "DildoGram for Windows"_cs;
-constexpr auto AppName = "DildoGram Desktop"_cs;
-constexpr auto AppFile = "DildoGram"_cs;
+constexpr auto AppNameOld = "vlmGram for Windows"_cs;
+constexpr auto AppName = "vlmGram Desktop"_cs;
+constexpr auto AppFile = "vlmGram"_cs;
 constexpr auto AppVersion = 6007001;
 constexpr auto AppVersionStr = "6.7.1";
 constexpr auto AppBetaVersion = false;

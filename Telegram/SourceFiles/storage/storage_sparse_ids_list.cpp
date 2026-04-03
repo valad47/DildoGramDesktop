@@ -64,7 +64,7 @@ SparseIdsList::AddResult SparseIdsList::addRangeItemsAndCountNew(
 		MsgRange noSkipRange) {
 	// Expects(noSkipRange.from <= noSkipRange.till);
 	if (!(noSkipRange.from <= noSkipRange.till)) {
-		return { 0 }; // DildoGram: fix crash when using `saveDeletedMessages`
+		return { 0 }; // vlmGram: fix crash when using `saveDeletedMessages`
 	}
 
 	if (noSkipRange.from == noSkipRange.till

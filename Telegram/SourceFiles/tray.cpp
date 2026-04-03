@@ -16,7 +16,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include <QtWidgets/QApplication>
 
-// DildoGram includes
+// vlmGram includes
 #include "ayu/ayu_settings.h"
 #include "ayu/features/streamer_mode/streamer_mode.h"
 #include "lang_auto.h"
@@ -85,7 +85,7 @@ void Tray::rebuildMenu() {
 			_activeForTrayIconAction = Core::App().isActiveForTrayMenu();
 			return _activeForTrayIconAction
 				? tr::lng_minimize_to_tray(tr::now)
-				: tr::lng_open_from_tray(tr::now).replace("Telegram", "DildoGram");
+				: tr::lng_open_from_tray(tr::now).replace("Telegram", "vlmGram");
 		});
 
 		_tray.addAction(
@@ -157,7 +157,7 @@ void Tray::rebuildMenu() {
 	auto quitText = _textUpdates.events(
 	) | rpl::map([=]
 	{
-		return tr::lng_quit_from_tray(tr::now).replace("Telegram", "DildoGram");
+		return tr::lng_quit_from_tray(tr::now).replace("Telegram", "vlmGram");
 	});
 	_tray.addAction(std::move(quitText), [] { Core::Quit(); });
 
