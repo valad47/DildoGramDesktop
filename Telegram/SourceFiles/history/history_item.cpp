@@ -1692,7 +1692,12 @@ bool HistoryItem::isIncomingUnreadMedia() const {
 }
 
 void HistoryItem::markMediaAndMentionRead() {
+	const auto wasUnreadMedia = isUnreadMedia();
 	_flags &= ~MessageFlag::MediaIsUnread;
+
+	if (wasUnreadMedia) {
+		invalidateChatListEntry();
+	}
 
 	if (mentionsMe()) {
 		_history->updateChatListEntry();
