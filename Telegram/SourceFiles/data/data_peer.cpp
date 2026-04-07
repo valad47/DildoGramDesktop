@@ -554,7 +554,7 @@ Data::FileOrigin PeerData::userpicOrigin() const {
 
 Data::FileOrigin PeerData::userpicPhotoOrigin() const {
 	return (isUser() && userpicPhotoId())
-		? Data::FileOriginUserPhoto(peerToUser(id).bare, userpicPhotoId())
+		? Data::FileOriginFullUser(peerToUser(id))
 		: Data::FileOrigin();
 }
 
