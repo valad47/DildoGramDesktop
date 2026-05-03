@@ -354,11 +354,9 @@ void AddDeleteOwnMessagesAction(PeerData *peerData,
 		return;
 	}
 	if (const auto chat = peerData->asChat()) {
-		if (!chat->amIn() || chat->amCreator() || chat->hasAdminRights()) {
-			return;
-		}
+
 	} else if (const auto channel = peerData->asChannel()) {
-		if (!channel->isMegagroup() || !channel->amIn() || channel->amCreator() || channel->hasAdminRights()) {
+		if (!channel->isMegagroup()) {
 			return;
 		}
 	} else {
