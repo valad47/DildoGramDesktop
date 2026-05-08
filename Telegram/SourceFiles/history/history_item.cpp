@@ -175,6 +175,7 @@ struct HistoryItem::CreateConfig {
 
 	UserId viaBotId = 0;
 	UserId viaBusinessBotId = 0;
+	PeerId guestChatViaFrom = 0;
 	int viewsCount = -1;
 	int forwardsCount = -1;
 	int boostsApplied = 0;
@@ -866,6 +867,9 @@ HistoryItem::HistoryItem(
 	}
 	if (_effectId) {
 		_history->owner().reactions().preloadEffectImageFor(_effectId);
+	}
+	if (isGuestChatBotMessage()) {
+		_history->setHasGuestChatBotMessages();
 	}
 }
 
@@ -1979,6 +1983,10 @@ UserData *HistoryItem::viaBot() const {
 		return via->bot;
 	}
 	return nullptr;
+}
+
+bool HistoryItem::isGuestChatBotMessage() const {
+	return (_flags & MessageFlag::GuestChatViaFrom);
 }
 
 UserData *HistoryItem::getMessageBot() const {
@@ -3236,7 +3244,7 @@ bool HistoryItem::canReact() const {
 			return (_flags & MessageFlag::ReactionsAllowed);
 		}
 	}
-	return true;
+	return Data::CanSend(history()->peer, ChatRestriction::SendReactions, false);
 }
 
 void HistoryItem::addPaidReaction(
@@ -3282,7 +3290,16 @@ void HistoryItem::toggleReaction(
 	Expects(!reaction.paid());
 
 	const auto addToRecent = (source == HistoryReactionSource::Selector);
-	if (!_reactions) {
+	if (_reactions
+		&& ranges::contains(_reactions->chosen(), reaction)) {
+		_reactions->remove(reaction);
+		if (_reactions->empty() && !_reactions->localPaidData()) {
+			_reactions = nullptr;
+			_flags &= ~MessageFlag::CanViewReactions;
+		}
+	} else if (!reactionsAreTags() && !canReact()) {
+		return;
+	} else if (!_reactions) {
 		_reactions = std::make_unique<Data::MessageReactions>(this);
 		const auto canViewReactions = !isDiscussionPost()
 			&& (_history->peer->isChat() || _history->peer->isMegagroup());
@@ -3290,16 +3307,31 @@ void HistoryItem::toggleReaction(
 			_flags |= MessageFlag::CanViewReactions;
 		}
 		_reactions->add(reaction, addToRecent);
-	} else if (ranges::contains(_reactions->chosen(), reaction)) {
-		_reactions->remove(reaction);
-		if (_reactions->empty() && !_reactions->localPaidData()) {
-			_reactions = nullptr;
-			_flags &= ~MessageFlag::CanViewReactions;
-		}
 	} else {
 		_reactions->add(reaction, addToRecent);
 	}
 	_history->owner().notifyItemDataChange(this);
+}
+
+bool HistoryItem::removeReactionsFromParticipant(
+		not_null<PeerData*> participant,
+		const Data::ReactionId &reaction) {
+	if (!_reactions) {
+		return false;
+	}
+	const auto hadUnread = hasUnreadReaction();
+	if (!_reactions->removeFromParticipant(participant, reaction)) {
+		return false;
+	}
+	if (_reactions->empty() && !_reactions->localPaidData()) {
+		_reactions = nullptr;
+		_flags &= ~MessageFlag::CanViewReactions;
+	}
+	if (hadUnread && (!_reactions || !_reactions->hasUnread())) {
+		markReactionsRead();
+	}
+	_history->owner().notifyItemDataChange(this);
+	return true;
 }
 
 void HistoryItem::updateReactionsUnknown() {
@@ -4379,7 +4411,7 @@ ItemPreview HistoryItem::toPreview(ToPreviewOptions options) const {
 	const auto sender = [&]() -> std::optional<QString> {
 		if (options.hideSender || isPostHidingAuthor() || isEmpty()) {
 			return {};
-		} else if (!_history->peer->isUser()) {
+		} else if (!_history->peer->isUser() || isGuestChatBotMessage()) {
 			if (const auto from = displayFrom()) {
 				return fromSender(from);
 			}
@@ -4435,6 +4467,9 @@ void HistoryItem::createComponents(CreateConfig &&config) {
 	}
 	if (config.viaBotId) {
 		mask |= HistoryMessageVia::Bit();
+	}
+	if (config.guestChatViaFrom) {
+		mask |= HistoryMessageGuestChat::Bit();
 	}
 	if (config.viewsCount >= 0 || !config.replies.isNull) {
 		mask |= HistoryMessageViews::Bit();
@@ -4529,6 +4564,9 @@ void HistoryItem::createComponents(CreateConfig &&config) {
 	}
 	if (const auto via = Get<HistoryMessageVia>()) {
 		via->create(&_history->owner(), config.viaBotId);
+	}
+	if (const auto guestChat = Get<HistoryMessageGuestChat>()) {
+		guestChat->create(&_history->owner(), config.guestChatViaFrom);
 	}
 	if (Has<HistoryMessageViews>()) {
 		changeViewsCount(config.viewsCount);
@@ -4913,6 +4951,9 @@ void HistoryItem::createComponents(const MTPDmessage &data) {
 	}
 	config.viaBotId = data.vvia_bot_id().value_or_empty();
 	config.viaBusinessBotId = data.vvia_business_bot_id().value_or_empty();
+	config.guestChatViaFrom = data.vguestchat_via_from()
+		? peerFromMTP(*data.vguestchat_via_from())
+		: PeerId();
 	config.viewsCount = data.vviews().value_or(-1);
 	config.forwardsCount = data.vforwards().value_or(-1);
 	config.replies = isScheduled()
@@ -6817,14 +6858,20 @@ void HistoryItem::setServiceMessageByAction(const MTPmessageAction &action) {
 
 	auto preparePaidMessagesRefunded = [&](const MTPDmessageActionPaidMessagesRefunded &action) {
 		auto result = PreparedServiceText();
-		if (_from->isSelf()) {
-			result.links.push_back(_history->peer->createOpenLink());
+		const auto sublist = _history->amMonoforumAdmin()
+			? savedSublist()
+			: nullptr;
+		const auto recipient = sublist
+			? sublist->sublistPeer().get()
+			: _history->peer.get();
+		if (_from->isSelf() || sublist) {
+			result.links.push_back(recipient->createOpenLink());
 			result.text = tr::lng_action_paid_message_refund_self(
 				tr::now,
 				lt_count,
 				action.vstars().v,
 				lt_name,
-				tr::link(_history->peer->shortName(), 1),
+				tr::link(recipient->shortName(), 1),
 				tr::marked);
 		} else {
 			result.links.push_back(_from->createOpenLink());
