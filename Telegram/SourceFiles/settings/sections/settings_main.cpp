@@ -129,7 +129,7 @@ private:
 
 	object_ptr<Ui::UserpicButton> _userpic;
 	object_ptr<Ui::FlatLabel> _name = { nullptr };
-	object_ptr<Ui::FlatLabel> _id = { nullptr };
+	QString _idText;
 	object_ptr<Ui::FlatLabel> _phone = { nullptr };
 	QString _phoneText;
 	object_ptr<Ui::FlatLabel> _username = { nullptr };
@@ -180,7 +180,6 @@ Cover::Cover(
 	Ui::UserpicButton::Source::PeerPhoto,
 	st::infoProfileCover.photo)
 , _name(this, st::infoProfileCover.name)
-, _id(this, st::defaultFlatLabel)
 , _phone(this, st::defaultFlatLabel, st::popupMenuWithIcons)
 , _username(this, st::infoProfileMegagroupCover.status) {
 	_user->updateFull();
@@ -188,16 +187,11 @@ Cover::Cover(
 	_name->setSelectable(true);
 	_name->setContextCopyText(tr::lng_profile_copy_fullname(tr::now));
 
-	_id->setSelectable(true);
-	_id->setContextCopyText(tr::ayu_ContextCopyID(tr::now));
-	const auto hook = [=](Ui::FlatLabel::ContextMenuRequest request) {
-		if (request.selection.empty()) {
-			const auto c = [=] {
-				auto id = IDString(_user);
-				TextUtilities::SetClipboardText({ id });
-			};
-			request.menu->addAction(tr::ayu_ContextCopyID(tr::now), c);
+	_phone->setSelectable(true);
+	_phone->setContextCopyText(tr::lng_profile_copy_phone(tr::now));
 
+	const auto phone_hook = [=](Ui::FlatLabel::ContextMenuRequest request) {
+		if (request.selection.empty()) {
 			const auto callback = [=] {
 				auto phone = rpl::variable<TextWithEntities>(
 					Info::Profile::PhoneValue(_user)).current().text;
@@ -209,7 +203,7 @@ Cover::Cover(
 				callback,
 				&st::menuIconCopy);
 		} else {
-			_id->fillContextMenu(request);
+			_phone->fillContextMenu(request);
 		}
 		const auto hidden = _user->session().settings().phoneNumberHidden();
 		const auto toggle = [=] {
@@ -225,7 +219,7 @@ Cover::Cover(
 			&st::menuIconSpoiler,
 			hidden);
 	};
-	_id->setContextMenuHook(hook);
+	_phone->setContextMenuHook(phone_hook);
 
 	initViewers();
 	setupChildGeometry();
@@ -291,7 +285,7 @@ void Cover::setupChildGeometry() {
 			st::settingsPhotoTop,
 			newWidth);
 		refreshNameGeometry(newWidth);
-		refreshIdGeometry(newWidth);
+		refreshPhoneGeometry(newWidth);
 		refreshUsernameGeometry(newWidth);
 		refreshQrButtonGeometry(newWidth);
 	}, lifetime());
@@ -308,9 +302,13 @@ void Cover::initViewers() {
 	IDValue(
 		_user
 	) | rpl::on_next([=](const TextWithEntities &value) {
-		_id->setText(value.text);
-		refreshIdGeometry(width());
+		_idText = value.text;
+		updatePhoneText();
+	}, lifetime());
 
+	Info::Profile::PhoneValue(
+		_user
+	) | rpl::on_next([=](const TextWithEntities &value) {
 		_phoneText = value.text;
 		updatePhoneText();
 	}, lifetime());
@@ -368,23 +366,16 @@ void Cover::refreshNameGeometry(int newWidth) {
 	_exteraBadge.move(exteraBadgeLeft, badgeTop, badgeBottom);
 }
 
-void Cover::refreshIdGeometry(int newWidth) {
-	const auto idLeft = st::settingsPhoneLeft;
-	const auto idTop = st::settingsPhoneTop;
-	const auto idWidth = newWidth
-		- idLeft
-		- st::infoProfileCover.rightSkip;
-	_id->resizeToWidth(idWidth);
-	_id->moveToLeft(idLeft, idTop, newWidth);
-}
-
 void Cover::updatePhoneText() {
+	auto result = Ui::Text::Code(_idText);
+	result.append(" | ");
 	if (_user->session().settings().phoneNumberHidden()) {
-		_phone->setMarkedText(
+		result.append(
 			Ui::Text::Wrapped({ _phoneText }, EntityType::Spoiler));
 	} else {
-		_phone->setText(_phoneText);
+		result.append(_phoneText);
 	}
+	_phone->setMarkedText(result);
 	refreshPhoneGeometry(width());
 }
 
@@ -394,8 +385,8 @@ void Cover::refreshPhoneGeometry(int newWidth) {
 	const auto phoneWidth = newWidth
 		- phoneLeft
 		- st::infoProfileCover.rightSkip;
-	_id->resizeToWidth(phoneWidth);
-	_id->moveToLeft(phoneLeft, phoneTop, phoneWidth);
+	_phone->resizeToWidth(phoneWidth);
+	_phone->moveToLeft(phoneLeft, phoneTop, phoneWidth);
 }
 
 void Cover::refreshUsernameGeometry(int newWidth) {
@@ -418,15 +409,15 @@ void Cover::refreshQrButtonGeometry(int newWidth) {
 }
 
 void BuildDildogramSettings(SectionBuilder &builder) {
-    builder.addSectionButton({
-        .title = tr::ayu_AyuPreferences(),
-        .targetSection = AyuMain::Id(),
-        .icon = { &st::menuIconPremium },
-        .keywords = { u"vlmgram"_q, u"ayugram"_q, u"settings"_q, u"preferences"_q }
-    });
+	builder.addSectionButton({
+		.title = tr::ayu_AyuPreferences(),
+		.targetSection = AyuMain::Id(),
+		.icon = { &st::menuIconPremium },
+		.keywords = { u"vlmgram"_q, u"ayugram"_q, u"settings"_q, u"preferences"_q }
+	});
 
-    builder.addSkip();
-    builder.addDivider();
+	builder.addSkip();
+	builder.addDivider();
 }
 
 void BuildSectionButtons(SectionBuilder &builder) {
@@ -859,9 +850,9 @@ const auto kMeta = BuildHelper({
 		};
 	});
 
-    BuildDildogramSettings(builder);
+	BuildDildogramSettings(builder);
 
-    builder.addSkip();
+	builder.addSkip();
 
 	BuildValidationSuggestions(builder);
 	BuildSectionButtons(builder);
