@@ -148,6 +148,7 @@ TopBarWidget::TopBarWidget(
 	_forward->setTextTransform(Ui::RoundButtonTextTransform::ToUpper);
 	_sendNow->setTextTransform(Ui::RoundButtonTextTransform::ToUpper);
 	_delete->setTextTransform(Ui::RoundButtonTextTransform::ToUpper);
+	_messageShot->setTextTransform(Ui::RoundButtonTextTransform::ToUpper);
 
 	Lang::Updated(
 	) | rpl::on_next([=] {
@@ -1127,6 +1128,11 @@ void TopBarWidget::updateControlsGeometry() {
 	}
 
 	_delete->moveToLeft(buttonsLeft, selectedButtonsTop);
+	if (!_delete->isHidden()) {
+		buttonsLeft += _delete->width() + st::topBarActionSkip;
+	}
+
+	_messageShot->moveToLeft(buttonsLeft, selectedButtonsTop);
 
 	{
 		const auto large = st::topBarActionButtonLargeRadius;
@@ -1138,6 +1144,7 @@ void TopBarWidget::updateControlsGeometry() {
 			_forward.data(),
 			_sendNow.data(),
 			_delete.data(),
+			_messageShot.data(),
 		};
 		auto first = (Ui::RoundButton*)(nullptr);
 		auto last = (Ui::RoundButton*)(nullptr);
@@ -1157,8 +1164,6 @@ void TopBarWidget::updateControlsGeometry() {
 			const auto right = (button == last) ? large : small;
 			button->setCornerRadii(left, right, left, right);
 		}
-
-		_messageShot->moveToLeft(buttonsLeft, selectedButtonsTop);
 	}
 	_clear->moveToRight(st::topBarActionSkip, selectedButtonsTop);
 
