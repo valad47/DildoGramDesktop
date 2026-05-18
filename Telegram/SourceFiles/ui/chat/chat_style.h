@@ -258,6 +258,7 @@ struct ChatPaintContext {
 	};
 	SkipDrawingParts skipDrawingParts = SkipDrawingParts::None;
 
+	bool skipSelectionCheck = false;
 	bool outbg = false;
 	bool paused = false;
 

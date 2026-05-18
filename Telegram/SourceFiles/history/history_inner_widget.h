@@ -12,6 +12,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "ui/rp_widget.h"
 #include "ui/controls/swipe_handler_data.h"
 #include "ui/effects/animations.h"
+#include "ui/effects/thanos_effect_controller.h"
 #include "ui/dragging_scroll_manager.h"
 #include "ui/widgets/middle_click_autoscroll.h"
 #include "ui/widgets/tooltip.h"
@@ -116,6 +117,9 @@ public:
 	}
 
 	Ui::ChatPaintContext preparePaintContext(const QRect &clip) const;
+
+	using CollapseGap = Ui::CollapseGap;
+	void setCollapseGaps(std::vector<CollapseGap> gaps);
 
 	void messagesReceived(
 		not_null<PeerData*> peer,
@@ -608,6 +612,11 @@ private:
 
 	[[nodiscard]] HistoryView::ElementOverlayHost &ensureOverlayHost();
 	std::unique_ptr<HistoryView::ElementOverlayHost> _overlayHost;
+
+	void setupThanosEffect();
+
+	std::unique_ptr<Ui::ThanosEffectController> _thanosController;
+	std::vector<CollapseGap> _collapseGaps;
 
 	bool _wasForceClickPreview = false;
 
