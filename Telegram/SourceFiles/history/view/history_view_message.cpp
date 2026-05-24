@@ -4596,7 +4596,7 @@ bool Message::hasFastReply() const {
 		return false;
 	}
 	const auto peer = data()->history()->peer;
-	return !hasOutLayout() && (peer->isChat() || peer->isMegagroup());
+	return !hasOutLayout() && (peer->isUser() || peer->isChat() || peer->isMegagroup());
 }
 
 bool Message::displayFastReply() const {
