@@ -2185,6 +2185,9 @@ void HistoryItem::applyEdition(HistoryMessageEdition &&edition) {
 	}
 	Assert(!updatingSavedLocalEdit || !isLocalUpdateMedia());
 
+	const auto wasGrouped = !updatingSavedLocalEdit
+		&& history()->owner().groups().isGrouped(this);
+
 	if (edition.isEditHide) {
 		_flags |= MessageFlag::HideEdited;
 	} else {
@@ -2313,6 +2316,10 @@ void HistoryItem::applyEdition(HistoryMessageEdition &&edition) {
 		Get<HistoryMessageFromRank>()->rank = edition.fromRank;
 	} else {
 		RemoveComponents(HistoryMessageFromRank::Bit());
+	}
+
+	if (wasGrouped && !history()->owner().groups().isGrouped(this)) {
+		history()->owner().groups().unregisterMessage(this);
 	}
 
 	finishEdition(keyboardTop);
