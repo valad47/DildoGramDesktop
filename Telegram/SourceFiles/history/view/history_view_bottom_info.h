@@ -43,7 +43,8 @@ public:
 			Shortcut       = 0x080,
 			EstimateDate   = 0x100,
 			ForwardedDate  = 0x200,
-			AyuDeleted     = 0x400,
+			Silent         = 0x400,
+			AyuDeleted     = 0x500,
 			//Unread, // We don't want to pass and update it in Date for now.
 		};
 		friend inline constexpr bool is_flag_type(Flag) { return true; };

@@ -2220,12 +2220,12 @@ auto Session::itemsAboutToBeDestroyed() const
 }
 
 void Session::notifyViewAboutToBeRemoved(
-		not_null<const ViewElement*> view) {
-	_viewAboutToBeRemoved.fire_copy(view);
+		not_null<const ViewElement*> view,
+		ViewRemovalReason reason) {
+	_viewAboutToBeRemoved.fire({ view, reason });
 }
 
-rpl::producer<not_null<const ViewElement*>>
-Session::viewAboutToBeRemoved() const {
+rpl::producer<ViewRemoval> Session::viewAboutToBeRemoved() const {
 	return _viewAboutToBeRemoved.events();
 }
 
@@ -3027,9 +3027,7 @@ void Session::processMessagesDeleted(
 			processMessageDelete(i->second);
 
 			toDestroy.push_back(i->second);
-			if (!history->chatListMessageKnown()) {
-				historiesToCheck.emplace(history);
-			}
+			historiesToCheck.emplace(history);
 		} else if (affected) {
 			affected->unknownMessageDeleted(messageId.v);
 		}
@@ -3041,7 +3039,9 @@ void Session::processMessagesDeleted(
 		}
 	}
 	for (const auto &history : historiesToCheck) {
-		history->requestChatListMessage();
+		if (!history->chatListMessageKnown()) {
+			history->requestChatListMessage();
+		}
 	}
 }
 
@@ -3055,9 +3055,7 @@ void Session::processNonChannelMessagesDeleted(const QVector<MTPint> &data) {
 			processMessageDelete(item);
 
 			toDestroy.push_back(item);
-			if (!history->chatListMessageKnown()) {
-				historiesToCheck.emplace(history);
-			}
+			historiesToCheck.emplace(history);
 		}
 	}
 	if (!toDestroy.empty()) {
@@ -3067,7 +3065,9 @@ void Session::processNonChannelMessagesDeleted(const QVector<MTPint> &data) {
 		}
 	}
 	for (const auto &history : historiesToCheck) {
-		history->requestChatListMessage();
+		if (!history->chatListMessageKnown()) {
+			history->requestChatListMessage();
+		}
 	}
 }
 
@@ -4057,7 +4057,9 @@ not_null<WebPageData*> Session::processWebpage(
 not_null<WebPageData*> Session::webpage(
 		WebPageId id,
 		const QString &siteName,
-		const TextWithEntities &content) {
+		const TextWithEntities &content,
+		PhotoData *photo,
+		DocumentData *document) {
 	return webpage(
 		id,
 		WebPageType::Article,
@@ -4066,8 +4068,8 @@ not_null<WebPageData*> Session::webpage(
 		siteName,
 		QString(),
 		content,
-		nullptr,
-		nullptr,
+		photo,
+		document,
 		WebPageCollage(),
 		nullptr,
 		nullptr,
