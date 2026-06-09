@@ -623,6 +623,15 @@ void processMessageDelete(not_null<HistoryItem*> item) {
 	}
 }
 
+void processMessageDelete(not_null<HistoryItem*> item, std::vector<not_null<HistoryItem*>> &toDestroy) {
+	if (!isMessageSavable(item)) {
+		toDestroy.push_back(item);
+	} else {
+		item->setDeleted();
+		AyuMessages::addDeletedMessage(item);
+	}
+}
+
 void resolvePeer(
 	const QString &peerId,
 	const QString &username,

@@ -3024,9 +3024,8 @@ void Session::processMessagesDeleted(
 		if (list && i != list->end()) {
 			const auto history = i->second->history();
 
-			processMessageDelete(i->second);
+			processMessageDelete(i->second, toDestroy);
 
-			toDestroy.push_back(i->second);
 			historiesToCheck.emplace(history);
 		} else if (affected) {
 			affected->unknownMessageDeleted(messageId.v);
@@ -3052,9 +3051,8 @@ void Session::processNonChannelMessagesDeleted(const QVector<MTPint> &data) {
 		if (const auto item = nonChannelMessage(messageId.v)) {
 			const auto history = item->history();
 
-			processMessageDelete(item);
+			processMessageDelete(item, toDestroy);
 
-			toDestroy.push_back(item);
 			historiesToCheck.emplace(history);
 		}
 	}

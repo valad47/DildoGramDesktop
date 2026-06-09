@@ -54,7 +54,8 @@ QString getPeerDC(not_null<PeerData*> peer);
 int getScheduleTime(int64 sumSize);
 
 bool isMessageSavable(not_null<HistoryItem *> item);
-void processMessageDelete(not_null<HistoryItem *> item);
+void processMessageDelete(not_null<HistoryItem*> item);
+void processMessageDelete(not_null<HistoryItem *> item, std::vector<not_null<HistoryItem*>> &toDestroy);
 
 void searchUserById(ID userId, Main::Session *session, const UsernameResolverCallback &callback);
 void searchChatById(ID chatId, Main::Session *session, const UsernameResolverCallback &callback);
