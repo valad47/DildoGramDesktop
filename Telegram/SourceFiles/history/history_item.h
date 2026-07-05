@@ -63,6 +63,7 @@ class Story;
 class SavedSublist;
 struct PaidReactionSend;
 struct SendError;
+struct FileOriginCloudDraft;
 } // namespace Data
 
 namespace HistoryUnreadThings {
@@ -393,10 +394,7 @@ public:
 	void applyEdition(const MTPDmessageService &message);
 	void applyEdition(const QVector<MTPMessageExtendedMedia> &media);
 	void updateForwardedInfo(const MTPMessageFwdHeader *fwd);
-	void updateSentContent(
-		const TextWithEntities &textWithEntities,
-		const MTPMessageMedia *media,
-		const MTPRichMessage *richMessage = nullptr);
+	void updateSentContent(const MTPDmessage &data);
 	void applySentMessage(const MTPDmessage &data);
 	void applySentMessage(
 		const QString &text,
@@ -555,6 +553,7 @@ public:
 		const TextWithEntities &summary);
 	void setRichPage(std::shared_ptr<const Iv::RichPage> page);
 	void setFullRichPage(std::shared_ptr<const Iv::RichPage> page);
+	void setRichDraftOrigin(Data::FileOriginCloudDraft origin);
 	void clearFullRichPage();
 	void clearRichPage();
 
@@ -690,6 +689,10 @@ private:
 	}
 
 	[[nodiscard]] bool checkDiscussionLink(ChannelId id) const;
+	void updateSentContent(
+		const TextWithEntities &textWithEntities,
+		const MTPMessageMedia *media,
+		const MTPRichMessage *richMessage);
 	void updateSentContent(
 		const TextWithEntities &textWithEntities,
 		const MTPMessageMedia *media,
