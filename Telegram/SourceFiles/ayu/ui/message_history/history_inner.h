@@ -111,6 +111,9 @@ public:
 	void elementShowTooltip(
 		const TextWithEntities &text,
 		Fn<void()> hiddenCallback) override;
+	void elementShowHiddenSenderTooltip(
+		FullMsgId itemId,
+		const TextWithEntities &text) override;
 	bool elementAnimationsPaused() override;
 	bool elementHideReply(
 		not_null<const HistoryView::Element*> view) override;
@@ -139,7 +142,6 @@ public:
 	bool elementHideTopicButton(not_null<const HistoryView::Element*> view) override;
 	void elementShowAddPollOption(not_null<HistoryView::Element*> view, not_null<PollData*> poll, FullMsgId context, QRect optionRect) override;
 	void elementSubmitAddPollOption(FullMsgId context) override;
-
 
 	~InnerWidget();
 
